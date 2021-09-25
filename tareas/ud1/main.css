@@ -1,9 +1,9 @@
 body {
-    margin: 5px 25vh;
+    margin: 1vh 25vh;
     font-family: 'Montserrat', sans-serif;
 }
 
-header, nav, section, aside, footer {
+header, nav, aside, footer {
     display: flex;
     align-items: baseline;
     justify-content: center;
@@ -15,6 +15,7 @@ header, nav, aside, footer {
 
 header {
     height: 20vh;
+    align-items: center;
     background: #2B3D68;
     font-size: x-large;
 }
@@ -27,7 +28,7 @@ nav {
 }
 
 article {
-    width: 75vh;
+    width: 100vh;
     height: 60vh;
     float:left;
 }
