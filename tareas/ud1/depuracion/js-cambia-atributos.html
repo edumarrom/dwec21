@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cambio de imágenes con JS</h1>
+    <h2>Pulsa la imagen para cambiarla</h2>
+    <img src= "http://funnypicture.org/thumb/2015/04/very-funny-cat-photos-1-background-wallpaper.jpg"
+    alt="Imagen código" id="miImagen" onclick="cambiarImagen()">
+    <script>
+        function cambiarImagen(){
+            const imagen=document.getElementById("miImagen");
+            if (imagen.src.match("funny-cute-cats")){
+                imagen.src= "http://funnypicture.org/thumb/2015/04/very-funny-cat-photos-1-background-wallpaper.jpg";
+            } else{
+                imagen.src= "http://funnypicture.org/thumb/2015/03/funny-cute-cats-15-widescreen-wallpaper.jpg" ;
+            }
+        }
+    </script>
+    </body>
+</html>
