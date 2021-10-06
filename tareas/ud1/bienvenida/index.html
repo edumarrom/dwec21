@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cambiarElemento(elemento, texto, color){
+            const parrafo=document.getElementById(elemento);
+
+            function cambiarContenido(contenido){
+                parrafo.innerHTML = contenido;
+            }
+            function cambiarColor(color){
+                parrafo.style.color=color;
+            }
+
+            cambiarContenido(texto);
+            cambiarColor(color);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>
+            3. Diseña web con tres botones para que al pulsarlos se genere un mensaje de bienvenida en francés, inglés y castellano, en la misma página. el mensaje irá en un párrafo. los mensajes tendrán un color diferente segun el idioma.
+        </p>
+    </div>
+    <div>
+        <p id="target"></p>
+    </div>
+    <div>
+        <button type="button" onclick="cambiarElemento('target', 'Welcome!', 'red')">English</button>
+        <button type="button" onclick="cambiarElemento('target', 'Bienvenue!', 'blue')">Français</button>
+        <button type="button" onclick="cambiarElemento('target', '¡Bienvenido!', 'purple')">Español</button>
+    </div>
+</body>
+</html>

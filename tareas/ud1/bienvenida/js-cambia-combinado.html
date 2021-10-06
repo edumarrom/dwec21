@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cambiarEstilo(ubicacion){
+        const parrafo=document.getElementById(ubicacion);
+        parrafo.style.fontSize="25px";
+        parrafo.style.color='red';
+        parrafo.style.fontFamily="Impact";
+        }
+
+        function cambiaContenido(ubicacion, contenido){
+            const parrafo=document.getElementById(ubicacion);
+            parrafo.innerHTML = contenido;
+        }
+
+        function muestraImagen(ubicacion){
+            const imagen=document.getElementById("miImagen");
+            imagen.src= ubicacion;
+        }
+    </script>
+</head>
+<body>
+    <h1>Cambio de estilo con JS</h1>
+    <p id="textoSuperior"></p>
+    <img id="miImagen" src="">
+    <p id="textoInferior">TEXTO A MODIFICAR</p>
+    <button onclick="cambiaContenido('textoSuperior','LIGO MÁS QUE TÚ'),
+        cambiaContenido('textoInferior','Y LO SABES'),
+        cambiarEstilo('textoSuperior'),
+        cambiarEstilo('textoInferior'),
+        muestraImagen('https://cdn.20m.es/img2/recortes/2012/02/16/48694-157-118.jpg')">Cambiar</button>
+    </body>
+</html>
