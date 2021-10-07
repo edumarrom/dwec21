@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function comprobar(pregunta, clase) {
+            function desactivar_botones(clase) {
+                let botones = document.getElementsByClassName(clase);
+                botones.forEach(boton => {
+                    boton.disabled = true;
+                });
+            }
+
+            let p = document.getElementById(pregunta);
+            if (p.slice(-1) == 't') {
+                p.style.color="green";
+            } else {
+                p.style.color="red";
+            }
+
+            desactivar_botones(clase)
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>
+            2. Realiza test de 10 preguntas donde cada pregunta tenga dos botones (verdadero y falso). si se acierta, la frase se pondrá en verde, sino en rojo.
+        </p>
+    </div>
+    <div>
+        <form action="" method="get">
+            <div>
+                <p id="p1">1. Cortar un brazo a una estrella la mata.</p>
+                <button type="button" id="p1t" class="p1" value="true" onclick="comprobar('p1t', 'p1')">Verdadero</button>
+                <button type="button" id="p1f" class="p1" value="false" onclick="comprobar('p1f', 'p1')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p2">2. Es Kiev la capital de Ucrania.</p>
+                <button type="button" id="p2t" class="p2" onclick="comprobar('p2')">Verdadero</button>
+                <button type="button" id="p2f" class="p2" onclick="comprobar('p2')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p3">3. Hay flores que huelen más de noche.</p>
+                <button type="button" id="p3t" class="p3" onclick="comprobar('p3')">Verdadero</button>
+                <button type="button" id="p3f" class="p3" onclick="comprobar('p3')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p4">4. Los paseriformes son una orden de reptiles.</p>
+                <button type="button" id="p4t" onclick="comprobar('p4')">Verdadero</button>
+                <button type="button" id="p4f" onclick="comprobar('p4')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p5">5. El aire pesa.</p>
+                <button type="button" id="p5t" onclick="comprobar('p5')">Verdadero</button>
+                <button type="button" id="p5f" onclick="comprobar('p5')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p6">6. Los polos magnétios de la tierra se invierten.</p>
+                <button type="button" id="p6t" onclick="comprobar('p6')">Verdadero</button>
+                <button type="button" id="p6f" onclick="comprobar('p6')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p7">2. Puede ser de día en Madrid y en Santiago a la vez.</p>
+                <button type="button" id="p7t" onclick="comprobar('p7')">Verdadero</button>
+                <button type="button" id="p7f" onclick="comprobar('p7')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p8">8. Las cucarachas tienen más de un cerebro.</p>
+                <button type="button" id="p8t" onclick="comprobar('p8')">Verdadero</button>
+                <button type="button" id="p8f" onclick="comprobar('p8')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p9">9. La palabra París comienza con “P” y termina con “T”.</p>
+                <button type="button" id="p9t" onclick="comprobar('p9')">Verdadero</button>
+                <button type="button" id="p9f" onclick="comprobar('p9')">Falso</button>
+            </div>
+
+            <div>
+                <p id="p10">10. Los pinceles de pelo de camello están hechos con pelos de camello.</p>
+                <button type="button" id="p10t" onclick="comprobar('p10')">Verdadero</button>
+                <button type="button" id="p10f" onclick="comprobar('p10')">Falso</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

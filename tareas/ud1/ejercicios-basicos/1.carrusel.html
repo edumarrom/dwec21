@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let fotos = ['img/num-1.png',
+        'img/num-2.png',
+        'img/num-3.png',
+        'img/num-4.png',
+        'img/num-5.png']
+        var i=0;
+
+        function cambiar(img) {
+            i++;
+            if(i>=fotos.length) {
+                i=0;
+            }
+            img.src=fotos[i];
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>
+            1. Elabora secuencia de imagenes con al menos 5 fotogramas. Según el usuario vaya haciendo click sobre las imágenes, la secuencia irá reproduciendose.
+        </p>
+    </div>
+    <div>
+        <img src= "img/num-1.png" id="taget" onclick="cambiar(this)">
+    </div>
+    <div>
+        <a href="index.html">Volver</a>
+    </div>
+</body>
+</html>
