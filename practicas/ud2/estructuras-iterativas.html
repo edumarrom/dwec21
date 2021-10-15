@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras iterativas</title>
+</head>
+<body>
+
+    <p id="script1"></p>
+    <p id="script2"></p>
+    <p id="script3"></p>
+    <p id="script4"></p>
+
+    <script>
+        /* Script 1 */
+        let datos= [5, 23, 12, 85];
+        let sumaDatos = 0;
+        for (let i = 0; i < datos.length; i++) {
+            sumaDatos += datos[i];
+        }
+        document.getElementById("script1").innerHTML =
+                `<p>El resultado es ${sumaDatos}</p>`;
+
+        /* Script 2 */
+        let profe = {
+            nom: 'Damian',
+            ape1: 'Leon',
+            ape2: 'Morales'
+        }
+        let nombre ='';
+
+        for (const campo in profe) {
+            nombre += profe[campo] + ' ';
+        }
+        document.getElementById("script2").innerHTML =
+                `<p>Nombre profesor: ${nombre}</p>`;
+
+        /* Script 3 */
+        let datos2 = [5, 23, 12, 85];
+        let sumaDatos2 = 0;
+
+        for (let valor of datos) {
+            sumaDatos2 += valor;
+        }
+        document.getElementById("script3").innerHTML =
+                `<p>El resultado es ${sumaDatos2}</p>`;
+
+        /* Script 4 */
+        try {
+            adddlert("Welcome guest!");
+        }
+        catch(err) {
+            document.getElementById("script4").innerHTML = err.message;
+        }
+    </script>
+</body>
+</html>
