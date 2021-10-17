@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* EJERCICIO: u2e7_while
+      Crea un control parental para que no se pueda entrar en una página.
+
+      Se pedirá al usuario que escriba el apellido del primer presidente
+      de la democracia (si no sabes quién fue, busca en Google ;)
+
+      Para guardar un valor del usuario utilizamos el siguiente código:
+
+      var respuesta = prompt (“Mensaje”);
+
+      Mientras el usuario no introduzca el valor correcto, el mensaje
+      seguirá saliendo.
+
+      Comenta el código con los comentarios que estimes necesarios.
+    */
+
+    function controlParental() {
+      let respuesta = '';
+      while (respuesta != 'Adolfo Suárez') {
+        respuesta = prompt('Introduce el nombre del primer presidente' +
+            '\nde la democracia española:','');
+      }
+    }
+    controlParental();
+  </script>
+</body>
+</html>
