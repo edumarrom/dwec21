@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>EJERCICIO: u2e4_ifelse</h1>
   <script>
     /*
     EJERCICIO: u2e4_ifelse
@@ -26,7 +27,7 @@
       con los comentarios que estimes necesarios.
     */
 
-    function ifelse() {
+    function edad() {
       let  edad = prompt('Introduce tu edad:','28');
 
       if (!(edad < 0)) {
@@ -34,17 +35,18 @@
           alert('Niño');
         } else if (edad > 13 && edad < 27) {
           alert('Joven');
-        } else if (edad > 26 && edad <=60) {
+        } else if (edad > 25 && edad <=60) {
           alert('Adulto');
         } else {
           alert('Jubilado');
         }
       } else {
-        alert('La edad no puede ser menor de cero.')
+        alert('La edad no puede ser menor de cero.');
       }
     }
 
-    ifelse();
+    edad();
   </script>
+   <p><a href="../index.html">Volver.</a></p>
 </body>
 </html>

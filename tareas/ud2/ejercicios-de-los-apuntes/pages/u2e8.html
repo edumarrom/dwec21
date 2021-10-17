@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>EJERCICIO: u2e8_while2</h1>
+  <script>
+    /* EJERCICIO: u2e8_while2
+      Modifica el ejercicio anterior de la siguiente forma:
+
+      En primer lugar, se carga un prompt donde pregunta: “¿Cuál fue el primer
+      presidente de la democracia española?”
+      En caso de que el usuario introduzca mal nombre y apellido, muestre como mensaje:
+      “ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?”
+      En caso de que el usuario introduzca el nombre del presidente (solamente) el prompt
+      muestre como mensaje “Te falta el apellido. ¿Cuál fue el primer presidente de la democracia española?”.
+      En caso de que el usuario introduzca el apellido del presidente (solamente) el prompt
+      muestre como mensaje “Te falta el nombre. ¿Cuál fue el primer presidente de la democracia española?”.
+
+      Comenta el código con los comentarios que estimes necesarios.
+    */
+
+    function controlParental() {
+      let nomCorrecto = 'Adolfo';
+      let apeCorrecto = 'Suárez';
+      let respuesta = prompt('¿Cuál fue el primer presidente de la democracia española?','');
+      while (respuesta != (`${nomCorrecto} ${apeCorrecto}`) ) {
+        if (respuesta == nomCorrecto ) {
+          respuesta = prompt('Te falta el apellido.\n' +
+            '¿Cuál fue el primer presidente de la democracia española:','');
+        } else if (respuesta == apeCorrecto) {
+          respuesta = prompt('Te falta el nombre.\n' +
+            '¿Cuál fue el primer presidente de la democracia española:','');
+        } else {
+          respuesta = prompt('ERROR. Inténtelo de nuevo.\n' +
+            '¿Cuál fue el primer presidente de la democracia española:','');
+        }
+      }
+    }
+    controlParental();
+  </script>
+  <p><a href="../index.html">Volver.</a></p>
+</body>
+</html>

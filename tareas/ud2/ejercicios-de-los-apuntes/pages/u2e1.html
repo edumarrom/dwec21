@@ -7,8 +7,9 @@
   <title>u2e1_numeros</title>
 </head>
 <body>
+  <h1>EJERCICIO: u2e1_numeros</h1>
   <script>
-    /* EJERCICIO: u2e1-numeros
+    /* EJERCICIO: u2e1_numeros
       Crea un programa en el que crees 5 variables numéricas
       (entero, decimal, científico, octal y hexadecimal).
 
@@ -24,20 +25,21 @@
     */
 
     function numeros(){
-      let entero = decimal.toFixed(0);
-      let decimal = 135.7;
-      let cientifico = 135e7;                     // decimal.toExponential(3)
-      let octal = 0o1357;                         // Number (entero).toString(8)
-      let hexa = 0x1357;                          // Number (entero).toString(16)
+      let entero = 1357;
+      let decimal = 135.7;                        // i.e: entero / 10,
+      let cientifico = 135e7;                     // No logro encontrar un equivalente.
+      let octal = 0o1357;                         // i.e: Number (751).toString(8)
+      let hexa = 0x1357;                          // i.e: Number (4951).toString(16)
 
       let numeros = [entero, decimal, cientifico, octal, hexa];
 
       numeros.forEach(e => {
-      alert(e);
+        alert(e);
       });
     }
 
     numeros();
   </script>
+  <p><a href="../index.html">Volver.</a></p>
 </body>
 </html>
