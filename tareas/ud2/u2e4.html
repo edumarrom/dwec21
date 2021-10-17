@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    EJERCICIO: u2e4_ifelse
+      Crea un programa que pida al usuario que introduzca una edad
+      y muestre el siguiente mensaje en función del número introducido:
+
+      - 0-12: Niño
+      - 13-26: Joven
+      - 26-60: Adulto
+      - >60: Jubilado
+
+      Para guardar un valor del usuario utilizamos el siguiente código:
+
+      - var respuesta = prompt (“Mensaje”);
+
+      También comprobará que no se meta un número menor de 0. Comenta el código
+      con los comentarios que estimes necesarios.
+    */
+
+    function ifelse() {
+      let  edad = prompt('Introduce tu edad:','28');
+
+      if (!(edad < 0)) {
+        if (edad >= 0 && edad < 14) {
+          alert('Niño');
+        } else if (edad > 13 && edad < 27) {
+          alert('Joven');
+        } else if (edad > 26 && edad <=60) {
+          alert('Adulto');
+        } else {
+          alert('Jubilado');
+        }
+      } else {
+        alert('La edad no puede ser menor de cero.')
+      }
+    }
+
+    ifelse();
+  </script>
+</body>
+</html>

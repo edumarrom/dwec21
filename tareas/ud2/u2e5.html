@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* EJERCICIO: u2e5_for
+      Crea un programa que genere un listado de horas que vayan desde
+      las 9 hasta las 21:30 de 30 minutos en 30 minutos.
+
+      En lugar de mostrar un alert, utiliza la instrucción
+      document.write(“Mensaje”) que muestra los datos en el propio HTML.
+
+      Ten en cuenta que tendrás que utilizar un for para las horas y
+      (por ejemplo) una variable booleana que irá cambiando de true a
+      false si es hora en punto u hora media.
+
+      Comenta el código con los comentarios que estimes necesarios.
+    */
+
+    function forhoras() {
+      let horas = [];
+      let ejemplo = '';
+      for (let h = 9; h <= 21; h++) {
+        for (let m = 0; m <= 30; m += 30) {
+          dibujarHora(h, m);
+        }
+      }
+
+      function dibujarHora(h, m) {
+        let resultado = `${h}:${m}`;
+
+        if (h < 10) {
+          resultado = '0' + resultado;
+        }
+        if (m == 0) {
+          resultado = resultado + '0';
+        }
+
+        document.write(`${resultado}<br>`);
+      }
+    }
+
+    forhoras();
+  </script>
+</body>
+</html>
