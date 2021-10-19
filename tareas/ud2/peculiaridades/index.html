@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!--
+    En esta parctica se evaluan los criterios a, d y e
+    del resultado de aprendizaje 2
+   -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="auxiliar.js"></script>
+  <title>Peculiaridades del lenguaje</title>
+</head>
+<body>
+  <h1>
+    Actividad de evaluación UD2:<br>
+    Peculiaridades de JavaScript
+  </h1>
+  <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+  <h3>Eduardo Martínez Romero</h3>
+  <hr>
+  <h2>1. NaN</h2>
+  <p>
+    NaN es el resultado de no poder representar un valor en un<br>
+    contexto numérico.
+  </p>
+  <code id="p1a"></code>
+  <p>
+    Sin embargo, el tipo de NaN es <code>number</code>. Esto sucede porque
+    NaN representa a todos los números no representables.
+  </p>
+  <code id="p1b"></code>
+  <script>p1();</script>
+  <h2>2. Precisión de los números</h2>
+  <p>
+    JavaScript usa 16 decimales de precisión. Si se supera dicho límite,<br>
+    se redondea:
+  </p>
+  <code id="p2a"></code>
+  <p>
+    También tenemos problemas en la representación en coma flotante, aunque<br>
+    es algo que sucede en muchos lenguajes de programación.
+  </p>
+  <code id=p2b></code><br>
+  <code id="p2c"></code>
+  <script>p2();</script>
+  <h2>3. Math.max()</h2>
+  <p>
+    La función <code>Math.max()</code> devuelve el mayor número de una serie<br>
+    de números pasados como parámetros.
+  </p>
+  <code id="p3a"></code>
+  <p>
+    Lo curioso es que si no le pasamos ningún parámetro nos devolverá el mayor<br>
+    número representable en JavaScript:
+  </p>
+  <code id="p3b"></code>
+  <p><small>Lo mismo pasa con <code>Math.min()</code>.</small></p>
+  <script>p3();</script>
+  <h2>4. Coerción de tipos</h2>
+  <p>
+    JavaScript tiene un particular sistema de coerción de tipos implícita que<br>
+    que no hace el agrado de todos los públicos.
+  </p>
+  <h3>4.1. Suma de arrays</h3>
+  <p>
+    En el caso de los arrays, siempre que se sumen dos arrays se realizará una<br>
+    coerción de estos arrays a cadena, por lo que a continuación el operador <code>+</code><br>
+    pasará a ser de concatenación.
+  </p>
+  <code id="p4p1a"></code>
+  <p>
+    Esto significa que si sumamos dos arrays vacíos, en lugar de devolvernos un<br>
+    array vacío, nos devolverá una cadena vacía.
+  </p>
+  <code id="p4p1b"></code>
+  <h3>4.2. Suma de booleanos</h3>
+  <p>
+    JavaScript realiza coerciones sobre los booleanos de modo que, si los sumamos<br>
+    pasarán a ser de tipo <code>number</code>, representando el número 1.
+  </p>
+  <code id="p4p2a"></code><br>
+  <code id="p4p2b"></code>
+  <h3>4.3. Suma de números y cadenas</h3>
+  <p>
+    En estos casos el orden de los factores si afectan al producto, ya que para<br>
+    JavaScript no es lo mismo sumar un número y una cadena <em>-o viceversa-</em> que<br>
+    restarlos:
+  </p>
+  <code id="p4p3a"></code><br>
+  <code id="p4p3b"></code><br>
+  <code id="p4p3c"></code><br>
+  <code id="p4p3d"></code><br>
+  <h3>4.4. Comparaciones con arrays</h3>
+  <p>Ya sabemos que los arrays pueden convertirse a cadena [continuará...]</p>
+  <script>p4();</script>
+</body>
+</html>
