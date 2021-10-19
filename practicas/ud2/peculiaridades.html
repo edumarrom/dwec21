@@ -27,9 +27,9 @@
     number. Esto es así porque NaN es una indeterminación numérica.<br>
     (Ej: >> 0 - 'a' => NaN )
   </p>
-  <p id="part1a"></p>
+  <code id="part1a"></code>
   <p>Sin embargo, eso no significa que <em>0 - 'a' == NaN</em> sea verdadero.</p>
-  <p id="part1b"></p>
+  <code id="part1b"></code>
   <script>
     function part1() {
       let valor = 0/0;
@@ -44,13 +44,13 @@
     Javascript tiene 16 decimales de precisión. Si supera dicho límite, redondea.<br>
     Ésto da como resultado cosas como:
   </p>
-  <p id="part2a"></p>
+  <code id="part2a"></code>
   <p>
     Este también tiene que ver con la precisión y la representación en coma flotante.<br>
     No es un fallo de Javascript. De hecho, pasa en muchos lenguajes, los cuales tienen<br>
     que decidir como se comporta:
   </p>
-  <p id="part2b"></p>
+  <code id="part2b"></code>
   <script>
     function part2() {
       let redondo = 9999999999999999;   // 10000000000000000
@@ -62,13 +62,13 @@
   </script>
   <h2>3. Math.max()</h2>
   <p>Esta función nos devuelve el valor máximo de una serie de parámetros:</p>
-  <p id="part3a"></p>
+  <code id="part3a"></code>
   <p>
     Lo curioso es que si no se le pasa ningún parámetro, nos devolverá el mayor número<br>
     representable en JavaScript que, curiosamente no es infinito:
-    <p id="part3b"></p>
-    <small><em>Lo mismo sucede con Math.min().</em></small>
   </p>
+  <code id="part3b"></code>
+  <p><small><em>Lo mismo sucede con Math.min().</em></small></p>
   <script>
     function part3() {
       let mayor = Math.max(2, 7, 9);
@@ -81,12 +81,12 @@
   <p>Gracias a ella, suceden cosas inesperadas, ya que tiene un sistema de coerción algo<br>
     extraño. Por ejemplo, si sumamos dos arrays, El lenguaje los convertirá a cadena.<br>
   </p>
-  <p id=part4a></p>
+  <code id=part4a></code>
   <p>
     Esto significa que si sumamos dos arrays vacíos, en lugar de devolver un array vacío,<br>
     devolverá una cadena vacía.
   </p>
-  <p ip="part4b"></p>
+  <code ip="part4b"></code>
   <script>
     function part4() {
       document.getElementById("part4a").innerHTML = ">> ['c','a','d'] + ['i','z'] => " + ['c','a','d'] + ['i','z'];
