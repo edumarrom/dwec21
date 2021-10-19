@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  RA 2. Escribe sentencias simples, aplicando la sintaxis del lenguaje y
+  verificando su ejecución sobre navegadores Web.
+
+    a) Se ha seleccionado un lenguaje de programación de clientes Web en
+      función de sus posibilidades.
+
+    d) Se han reconocido y comprobado las peculiaridades del lenguaje
+      respecto a las conversiones entre distintos tipos de datos.
+
+    e) Se han utilizado mecanismos de decisión en la creación de bloques
+      de sentencias. (En los apuntes pone: Se han añadido comentarios al código.)
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peculiaridades de JS</title>
+</head>
+<body>
+  <h1>Peculiaridades de JavaScript</h1>
+  <h2>1. NaN</h2>
+  <p>
+    A pesar de que NaN significa "Not a Number", su tipo es sin embargo<br>
+    number. Esto es así porque NaN es una indeterminación numérica.<br>
+    (Ej: >> 0 - 'a' => NaN )
+  </p>
+  <p id="part1a"></p>
+  <p>Sin embargo, eso no significa que <em>0 - 'a' == NaN</em> sea verdadero.</p>
+  <p id="part1b"></p>
+  <script>
+    function part1() {
+      let valor = 0/0;
+      let nan = NaN;
+      document.getElementById("part1a").innerHTML = '>> typeof NaN => ' + typeof NaN;
+      document.getElementById("part1b").innerHTML = '>> 0/0 == NaN => ' + (valor == nan? 'true!':'false');
+    }
+     part1();
+  </script>
+  <h2>2. La precisión numérica</h2>
+  <p>
+    Javascript tiene 16 decimales de precisión. Si supera dicho límite, redondea.<br>
+    Ésto da como resultado cosas como:
+  </p>
+  <p id="part2a"></p>
+  <p>
+    Este también tiene que ver con la precisión y la representación en coma flotante.<br>
+    No es un fallo de Javascript. De hecho, pasa en muchos lenguajes, los cuales tienen<br>
+    que decidir como se comporta:
+  </p>
+  <p id="part2b"></p>
+  <script>
+    function part2() {
+      let redondo = 9999999999999999;   // 10000000000000000
+      document.getElementById("part2a").innerHTML = '>> 9999999999999999 => ' + redondo;
+      let flotante = 0.1 + 0.2;
+      document.getElementById("part2b").innerHTML = '>> 0.1 + 0.2 => ' + flotante;
+    }
+    part2();
+  </script>
+  <h2>3. Math.max()</h2>
+  <p>Esta función nos devuelve el valor máximo de una serie de parámetros:</p>
+  <p id="part3a"></p>
+  <p>
+    Lo curioso es que si no se le pasa ningún parámetro, nos devolverá el mayor número<br>
+    representable en JavaScript que, curiosamente no es infinito:
+    <p id="part3b"></p>
+    <small><em>Lo mismo sucede con Math.min().</em></small>
+  </p>
+  <script>
+    function part3() {
+      let mayor = Math.max(2, 7, 9);
+      document.getElementById("part3a").innerHTML = '>> Math.max(2, 7, 9) => ' + mayor;
+      document.getElementById("part3b").innerHTML = '>> Math.max() => ' + Math.max();
+    }
+    part3();
+  </script>
+  <h2>4. Coerción de tipos implícita</h2>
+  <p>Gracias a ella, suceden cosas inesperadas, ya que tiene un sistema de coerción algo<br>
+    extraño. Por ejemplo, si sumamos dos arrays, El lenguaje los convertirá a cadena.<br>
+  </p>
+  <p id=part4a></p>
+  <p>
+    Esto significa que si sumamos dos arrays vacíos, en lugar de devolver un array vacío,<br>
+    devolverá una cadena vacía.
+  </p>
+  <p ip="part4b"></p>
+  <script>
+    function part4() {
+      document.getElementById("part4a").innerHTML = ">> ['c','a','d'] + ['i','z'] => " + ['c','a','d'] + ['i','z'];
+      document.getElementById("part4a").innerHTML = ">> [] + [] => " + `"${[] + []}"`;
+    }
+    part4();
+  </script>
+</body>
+</html>
