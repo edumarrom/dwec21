@@ -10,13 +10,15 @@
   <form action="" method="get">
     <label for="ubicacion"><h2>Indique la sala del crimen</h2></label>
     <select name="ubicacion" id="ubicacion">
+      <option value="none">Sala</option>
       <option value="salón de baile">Salón de baile</option>
       <option value="galería">Galería</option>
       <option value="sala de billar">Sala de billar</option>
       <option value="comedor">Comedor</option>
     </select>
     <label for="sospechoso"><h2>Indique el sospechoso</h2></label>
-    <select name="sospechoso" id="sospechoso">
+    <select name="sospechoso" id="sospechoso" selected>
+      <option value="none">Sospechoso</option>
       <option value="Sr. Kalehoff">Sr. Kalehoff</option>
       <option value="Sra. Van Cleve">Sra. Van Cleve</option>
       <option value="Sra. Sparr">Sra. Sparr</option>
@@ -25,16 +27,16 @@
 
     <h2 id="resultado"></h2>
 
-    <button type="button" onclick="cluedo('salón de baile', 'Sr. Kalehoff')">Comprobar</button>
+    <button type="button" onclick="cluedo()">Comprobar</button>
   </form>
   <script>
-    function cluedo(ubicacion, sospechoso){
+    function cluedo(){
+      ubicacion = document.getElementById("ubicacion").value;
+      sospechoso = document.getElementById("sospechoso").value;
       correcto = false;
       clave = null;
       salas = ['salón de baile', 'galería', 'sala de billar', 'comedor'];
-
       nombres = ['Sr. Kalehoff', 'Sra. Van Cleve', 'Sra. Sparr', 'Sr. Parkes'];
-
       objetos = ['veneno', 'trofeo', 'palo de billar', 'cuchillo'];
 
       for (let s = 0; s < salas.length; s++) {
