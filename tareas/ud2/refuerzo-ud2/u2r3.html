@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" method="get">
+    <label for="ubicacion"><h2>Indique la sala del crimen</h2></label>
+    <select name="ubicacion" id="ubicacion">
+      <option value="salón de baile">Salón de baile</option>
+      <option value="galería">Galería</option>
+      <option value="sala de billar">Sala de billar</option>
+      <option value="comedor">Comedor</option>
+    </select>
+    <label for="sospechoso"><h2>Indique el sospechoso</h2></label>
+    <select name="sospechoso" id="sospechoso">
+      <option value="Sr. Kalehoff">Sr. Kalehoff</option>
+      <option value="Sra. Van Cleve">Sra. Van Cleve</option>
+      <option value="Sra. Sparr">Sra. Sparr</option>
+      <option value="Sr. Parkes">Sr. Parkes</option>
+    </select>
+
+    <h2 id="resultado"></h2>
+
+    <button type="button" onclick="cluedo('salón de baile', 'Sr. Kalehoff')">Comprobar</button>
+  </form>
+  <script>
+    function cluedo(ubicacion, sospechoso){
+      correcto = false;
+      clave = null;
+      salas = ['salón de baile', 'galería', 'sala de billar', 'comedor'];
+
+      nombres = ['Sr. Kalehoff', 'Sra. Van Cleve', 'Sra. Sparr', 'Sr. Parkes'];
+
+      objetos = ['veneno', 'trofeo', 'palo de billar', 'cuchillo'];
+
+      for (let s = 0; s < salas.length; s++) {
+        for (let n = 0; n < nombres.length; n++) {
+          if (ubicacion == salas[s] && sospechoso == nombres[n] && s == n) {
+            clave = n;
+            correcto = true;
+          }
+        }
+      }
+
+      if (correcto) {
+        document.getElementById('resultado').innerHTML = `Lo hizo ${nombres[clave]} en el ${salas[clave]} con el ${objetos[clave]}`;
+      } else {
+        document.getElementById('resultado').innerHTML = `No se ha encontrado al asesino`;
+      }
+    }
+  </script>
+</body>
+</html>
