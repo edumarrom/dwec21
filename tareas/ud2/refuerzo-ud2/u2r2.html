@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>u2r2</title>
-</head>
-<body>
   <script>
     /*
       2. Los grupos musicales reciben un nombre en función del número de componentes.
@@ -19,39 +16,55 @@
       - muestre "thes  es  a  large  group" si rnusicians es mayor que 4
     */
 
-    function grupoMusical() {
-      musicians = prompt('Introduce el número de componentes:');
-
-      if (musicians >= 0) {
+    function grupoMusical(musicians) {
+      let resultado = document.getElementById('resultado');
+      let respuesta = 'Se trata de un ';
+      if (musicians > 0) {
         if (musicians == 1) {
-          alert('solo');
+          respuesta += 'solo.';
         } else if (musicians == 2) {
-          alert('duet');
+          respuesta += 'dueto.';
         } else if (musicians == 3) {
-          alert('trio');
+          respuesta += 'trio.';
         } else if (musicians == 4) {
-          alert('quartet');
+          respuesta += 'cuarteto.';
         } else if (musicians > 4) {
-          alert('this is a large group');
+          respuesta += `un grupo de ${musicians} integrantes.`;
         }
       } else {
-        alert('not a group.');
+        respuesta ='Esto no es un grupo.';
       }
+      resultado.innerHTML = respuesta;
     }
 
     function grupoMusicalTernario() {
-      musicians = prompt('Introduce el número de componentes:');
+      let resultado = document.getElementById('resultado');
+      let respuesta = 'Se trata de un ';
 
       musicians >= 0 ?
-        musicians == 1 ? alert('solo')
-        : musicians == 2 ? alert('duet')
-        : musicians == 3 ? alert('trio')
-        : musicians == 4 ? alert('quartet')
-        : musicians > 4 ? alert('this is a large group') : null
-      : alert('not a group.');
-    }
+        musicians == 1 ? respuesta += 'solo.'
+        : musicians == 2 ? respuesta += 'dueto.'
+        : musicians == 3 ? respuesta += 'trio.'
+        : musicians == 4 ? respuesta += 'cuarteto.'
+        : musicians > 4 ? respuesta += `un grupo de ${musicians} componentes.` : null
+      : respuesta = 'Esto no es un grupo.';
 
-    grupoMusical();
+      resultado.innerHTML = respuesta;
+    }
   </script>
+  <title>u2r2</title>
+</head>
+<body>
+  <h1>2. Grupo Musical</h1>
+  <div>
+    <h2 id="resultado"></h2>
+    <script>
+      let componentes = prompt('Introduce el número de componentes:', '5');
+      grupoMusical(componentes);
+    </script>
+  </div>
+  <div>
+    <a href="../index.html">Volver</a>
+  </div>
 </body>
 </html>

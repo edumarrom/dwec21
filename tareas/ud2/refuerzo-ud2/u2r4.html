@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>u2r4</title>
-</head>
-<body>
   <script>
     /* 4. Escribe un bucle while que:
     - Recorra del 1  al 20
@@ -15,35 +12,53 @@
     - Si es divisible por 3 y 5 que muestre "Divisible por 3 y 5"
     - Si no es dividible ni por 3 ni por 5 que muestre el número
     */
-    function recorreNumeros() {
-      document.write('<h2><code>RecorreIfelse()</code></h2>');
-      for (let i = 1; i < 21; i++) {
+    function divisibles(n) {
+      let resultado = document.getElementById('resultado');
+      let respuesta = '<p>';
+      for (let i = 1; i <= n; i++) {
         if (i % 3 == 0 && i % 5 == 0) {
-          document.write(`${i} es divisible por 3 y 5.`);
+          respuesta += `${i} es divisible por 3 y 5.`;
         } else if (i % 3 == 0) {
-          document.write(`${i} es divisible por 3.`);
+          respuesta += `${i} es divisible por 3.`;
         } else if (i % 5 == 0) {
-          document.write(`${i} es divisible por 5.`);
+          respuesta += `${i} es divisible por 5.`;
         } else {
-          document.write(`${i}`);
+          respuesta += `${i}`;
         }
-        document.write('<br>');
+        respuesta += '</p>';
       }
+
+      resultado.innerHTML = respuesta;
     }
 
-    function recorreTernario() {
-      n = prompt('Introduce número:');
-      document.write('<h2><code>RecorreTernatio()</code></h2>');
-      for (let i = 1; i < n; i++) {
-        i % 3 == 0 && i % 5 == 0 ? document.write(`${i} es divisible por 3 y 5.`)
-        : i % 3 == 0 ? document.write(`${i} es divisible por 3.`)
-        : i % 5 == 0 ?  document.write(`${i} es divisible por 5.`)
-        : document.write(`${i}`);
+    function divisiblesTernario(n) {
+      let resultado = document.getElementById('resultado');
+      let respuesta = '<p>';
+      for (let i = 1; i <= n; i++) {
+        i % 3 == 0 && i % 5 == 0 ? respuesta += `${i} es divisible por 3 y 5.`
+        : i % 3 == 0 ? respuesta += `${i} es divisible por 3.`
+        : i % 5 == 0 ?  respuesta += `${i} es divisible por 5.`
+        : respuesta += `${i}`;
 
-        document.write('<br>');
+        respuesta += '</p>';
       }
+
+      resultado.innerHTML = respuesta;
     }
-    recorreNumeros();
   </script>
+  <title>u2r4</title>
+</head>
+<body>
+  <h1>4. Divisibles por 3 y 5.</h1>
+  <div>
+    <a href="../index.html">Volver</a>
+  </div>
+  <div id="resultado">
+    <script>
+      let n = prompt('Introduce número:', '20');
+      divisibles(n);
+    </script>
+  </div>
+
 </body>
 </html>
