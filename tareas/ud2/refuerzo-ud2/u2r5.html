@@ -4,80 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="u2r5.js"></script>
   <title>u2r5</title>
 </head>
 <body>
-  <script>
-    /* 5. Realiza un script que muestre los dígitos que componen un
-    número introducido por el usuario. Este debe ser menor de 1000.
-
-    Haz 3 versiones usando for, for...in y  for...of
-    */
-  function muestraDigitoBruto(n) {
-    document.write(`<h2><code>muestraDigitoBruto(${n})</code></h2>`);
-    if (n < 1000) {
-      let d3 = n % 10;
-      let d2 = parseInt(n / 10) % 10;
-      let d1 = parseInt((parseInt(n / 10)) / 10);
-
-      let digitos = [d1, d2, d3];
-
-      document.write(`Los dígitos de ${n} son: <ul>`);
-      digitos.forEach(d => {
-        document.write(`<li>${d}</li>`);
-      });
-      document.write('</ul>');
-    } else {
-      document.write(`El número ${n} tiene más de 3 dígitos.`)
-    }
-  }
-
-  function muestraDigitoFor(n) {
-    document.write(`<h2><code>muestraDigitoFor(${n})</code></h2>`);
-    if (n < 1000) {
-      let aux = String(n);
-      document.write(`Los dígitos de ${n} son: <ul>`);
-      for (let i = 0; i < aux.length; i++) {
-        document.write(`<li>${aux[i]}</li>`);
-
-      }
-      document.write('</ul>');
-    } else {
-      document.write(`El número ${n} tiene más de 3 dígitos.`)
-    }
-  }
-
-  function muestraDigitoForIn1(n) {
-    document.write(`<h2><code>muestraDigitoForIn1(${n})</code></h2>`);
-    if (n < 1000) {
-      let aux = Object.assign({},(String(n).split('')));
-      document.write(`Los dígitos de ${n} son: <ul>`);
-      for (let k in aux) {
-        document.write(`<li>${aux[k]}</li>`);
-      }
-      document.write('</ul>');
-    } else {
-      document.write(`El número ${n} tiene más de 3 dígitos.`)
-    }
-  }
-
-  function muestraDigitoForIn2(n) {
-    document.write(`<h2><code>muestraDigitoForIn2(${n})</code></h2>`);
-    if (n < 1000) {
-      let aux = String(n);
-      document.write(`Los dígitos de ${n} son: <ul>`);
-      for (let k in aux) {
-        document.write(`<li>${aux[k]}</li>`);
-      }
-      document.write('</ul>');
-    } else {
-      document.write(`El número ${n} tiene más de 3 dígitos.`)
-    }
-  }
-  muestraDigitoBruto(678);
-  muestraDigitoFor(586);
-  muestraDigitoForIn1(259);
-  muestraDigitoForIn2(912);
-  </script>
+  <h1>u2r5</h1>
+  <div>
+    <form action="" method="get">
+      <label for="ubicacion"><h2>Número:</h2></label>
+      <input type="text" name="n" id="n">
+      <button type="button" onclick="main()">Comprobar</button>
+    </form>
+  </div>
+  <div>
+    <p id="resultado"></p>
+  </div>
 </body>
 </html>

@@ -15,7 +15,28 @@
     - Si es divisible por 3 y 5 que muestre "Divisible por 3 y 5"
     - Si no es dividible ni por 3 ni por 5 que muestre el número
     */
-    function recorreNumeros() {
+    function recorreSwitch() {
+      document.write('<h2><code>RecorreSwitch()</code></h2>');
+      for (let i = 1; i < 21; i++) {
+        switch (true) {
+          case (i % 3 == 0 && i % 5 == 0):
+            document.write(`${i} es divisible por 3 y 5.`);
+            break;
+          case (i % 3 == 0):
+            document.write(`${i} es divisible por 3.`);
+            break;
+          case (i % 5 == 0):
+            document.write(`${i} es divisible por 5.`);
+            break;
+          default:
+          document.write(`${i}`);
+            break;
+        }
+        document.write('<br>');
+      }
+    }
+
+    function recorreIfeslse() {
       document.write('<h2><code>RecorreIfelse()</code></h2>');
       for (let i = 1; i < 21; i++) {
         if (i % 3 == 0 && i % 5 == 0) {
@@ -32,18 +53,21 @@
     }
 
     function recorreTernario() {
-      n = prompt('Introduce número:');
       document.write('<h2><code>RecorreTernatio()</code></h2>');
-      for (let i = 1; i < n; i++) {
-        i % 3 == 0 && i % 5 == 0 ? document.write(`${i} es divisible por 3 y 5.`)
-        : i % 3 == 0 ? document.write(`${i} es divisible por 3.`)
-        : i % 5 == 0 ?  document.write(`${i} es divisible por 5.`)
+      for (let i = 1; i < 21; i++) {
+        (i % 3 == 0 && i % 5 == 0)
+        ? document.write(`${i} es divisible por 3 y 5.`)
+        : (i % 3 == 0)
+        ? document.write(`${i} es divisible por 3.`)
+        : (i % 5 == 0)
+        ?  document.write(`${i} es divisible por 5.`)
         : document.write(`${i}`);
-
         document.write('<br>');
       }
     }
-    recorreNumeros();
+    recorreSwitch();
+    recorreIfeslse();
+    recorreTernario();
   </script>
 </body>
 </html>

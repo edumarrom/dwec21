@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>u2r1</title>
+</head>
+<body>
+  <script>
+    /*
+      1. Escribe una sentencia if...else que a partir de un valor recibido por el usuario:
+        - muestre "e ven" si el número es par.
+        - muestre "odd" si el número es impar.
+          - Sugerencia: Usa el operador módulo.
+    */
+
+    function parImpar() {
+      numero = prompt('Introduce un número:','9');
+      respuesta = `El número ${numero} es `;
+
+      if (numero % 2) {
+        respuesta += 'impar';
+      } else {
+        respuesta += 'par';
+      }
+
+      /*
+        Alternativa con ternario:
+        numero % 2 ? respuesta += 'impar':respuesta += 'par';
+      */
+
+      alert(respuesta);
+    }
+    parImpar();
+  </script>
+</body>
+</html>

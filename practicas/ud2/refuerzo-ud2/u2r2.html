@@ -19,8 +19,33 @@
       - muestre "thes  es  a  large  group" si rnusicians es mayor que 4
     */
 
-    function grupoMusical() {
-      musicians = prompt('Introduce el número de componentes:');
+    function grupoMusicalSwitch() {
+      musicians = prompt('Introduce el número de componentes:','9');
+
+      switch (true) {
+        case (musicians == 1):
+          alert('solo');
+          break;
+        case (musicians == 2):
+          alert('duet');
+          break;
+        case (musicians == 3):
+          alert('trio');
+          break;
+        case (musicians == 4):
+          alert('quartet');
+          break;
+        case (musicians > 4):
+          alert('this is a large group');
+          break;
+        default:
+          alert('not a group');
+          break;
+      }
+    }
+
+    function grupoMusicalIfelse() {
+      musicians = prompt('Introduce el número de componentes:','9');
 
       if (musicians >= 0) {
         if (musicians == 1) {
@@ -40,7 +65,7 @@
     }
 
     function grupoMusicalTernario() {
-      musicians = prompt('Introduce el número de componentes:');
+      musicians = prompt('Introduce el número de componentes:','9');
 
       musicians >= 0 ?
         musicians == 1 ? alert('solo')
@@ -49,9 +74,12 @@
         : musicians == 4 ? alert('quartet')
         : musicians > 4 ? alert('this is a large group') : null
       : alert('not a group.');
+
     }
 
-    grupoMusical();
+    grupoMusicalTernario();
+    grupoMusicalIfelse();
+    grupoMusicalSwitch();
   </script>
 </body>
 </html>
