@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getEdadCompleta() {
+      let fActual = new Date();
+      let fNac = new Date(1993, 11, 20);
+
+      let ms = fActual - fNac;
+
+      let anyos = ((((ms / 1000) /60) /60) /24) /3365.25;
+      let years =(Math.floor(anyos));
+      let meses = (anyos-years) * 12;
+      let mes = Math.floor(meses);
+      let dias = parseInt((meses - mes) * 30);
+
+      let meses = Math.floor(meses);
+    }
+  </script>
+</body>
+</html>
