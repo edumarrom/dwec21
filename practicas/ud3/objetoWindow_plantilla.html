@@ -91,6 +91,8 @@
         cIframe += '<li>La "src" de del sitio  en iframe1 es: '
             + `${window.frames[0].frameElement.src}</li>`; // object HTMLIFrameElement.src
 
+        window.frames[0].frameElement.src = 'https://www.as.com/';
+
             cIframe += '<li>El id del sitio  en iframe2 es: '
             + `"${window.frames[1].frameElement.id}"</li>`;
             cIframe += '<li>La "src" de del sitio  en iframe2 es: '
