@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UT3 Objeto Window</title>
+    </head>
+
+    <body>
+
+        <h1>El BOM</h1>
+        <h2>El objeto Window</h2>
+
+        <p id="parrafo"></p>
+
+        <iframe id="fr1" src="https://html.spec.whatwg.org/multipage/window-object.html" width="40%" height="150"></iframe>
+        <iframe src="https://wikipedia.com" width="40%" height="150"></iframe>
+
+        <p id="ifr"></p>
+
+        <button id="boton1" onclick="crearVentana()">Crear Ventana</button>
+        <button id="boton2" onclick="cerrarVentana()">Cerrar Ventana</button>
+        <button id="boton3" onclick="redimensionarVentana()">Resize Ventana</button>
+        <button id="boton4" onclick="moverVentana()">Mover Ventana</button>
+        <button id="boton5" onclick="retardoVentana()">Alert 3s</button>
+        <button id="boton6" onclick="quitarRetardo()">Clear Retardo</button>
+        <button id="boton7" onclick="intervaloReloj()">Intervalo</button>
+        <button id="boton8" onclick="quitarIntervalo()">Clear Int</button>
+
+
+        <p id = "ventanas"></p>
+
+        <p id = "reloj"></p>
+
+        <script>
+
+         //PROPIEDADES BÁSICAS DEL OBJETO WINDOW
+
+            objWindow();            //Llamo a la función antes para que muestre info antes de evento
+
+            function objWindow() {
+                let cadena = 'Información:<ul>';
+                let objetivo = document.getElementById('parrafo');
+                window.name = 'Mi ventana';
+
+                cadena += `<li>Nombre: ${window.name}</li>`;
+
+                // Tamaño de ventana con toolbar y scrollbars
+                cadena += `<li>Alto externo: ${window.outerHeight}`;
+                cadena += `<li>Ancho externo: ${window.outerWidth}`;
+
+                // Tamaño de ventana sin toolbar ni scrollbars
+                cadena += `<li>Alto interno: ${window.innerHeight}`;
+                cadena += `<li>Ancho interno: ${window.innerWidth}`;
+
+                /*
+                    Posición del scroll. devuelve el nº de pixeles donde
+                    se encuentre
+                */
+                cadena += `<li>Scroll horizontal: ${window.scrollX}</li>`;
+                cadena += `<li>Scroll vertical: ${window.scrollY}</li>`;
+
+
+                /* Distancia desde la esquina superior izqd. */
+                cadena += `<li>Distancia desde la izqd: ${window.screenX}</li>`;
+                cadena += `<li>Distancia desde arriba: ${window.screenY}</li>`;
+
+                cadena += '</ul>';
+
+
+
+                objetivo.innerHTML = cadena;
+            }
+
+            window.onresize = objWindow;    // Evento por redimension de ventana
+
+
+        //  PROPIEDADES DE IFRAMES
+
+        let cIframe = 'Propiedades de iFrame:<ul>';
+        let objetivoIfr = document.getElementById('ifr');
+
+        cIframe += `<li>El número de frames es: ${window.frames.length}</li>`;
+        cIframe += '<li>La página actual no está insertada en un frame.'
+                + ` "frameElement" devuelve: ${window.frameElement}</li>`;
+
+
+        cIframe += '<li>El id del sitio  en iframe1 es: '
+            + `${window.frames[0].frameElement.id}</li>`;
+        cIframe += '<li>La "src" de del sitio  en iframe1 es: '
+            + `${window.frames[0].frameElement.src}</li>`; // object HTMLIFrameElement.src
+
+            cIframe += '<li>El id del sitio  en iframe2 es: '
+            + `"${window.frames[1].frameElement.id}"</li>`;
+            cIframe += '<li>La "src" de del sitio  en iframe2 es: '
+            + `${window.frames[1].frameElement.src}</li>`;
+
+        cIframe += '</ul>';
+
+        objetivoIfr.innerHTML = cIframe;
+
+
+        //METODOS DEL OBJETO WINDOW Y PROPIEDADES DE OTRAS VENTANAS
+
+            let ventanaNueva;
+
+            function crearVentana(){
+
+            }
+
+            function cerrarVentana(){
+
+            }
+
+            function redimensionarVentana(){
+
+            }
+
+            function moverVentana(){
+
+            }
+
+        //MÉTODOS DE INSTRUCCIONES DE TIEMPO
+
+            function saludo(){
+
+            }
+
+
+            function retardoVentana(){
+
+            }
+
+            function quitarRetardo(){
+
+            }
+
+
+            function reloj(){
+
+            }
+
+            function intervaloReloj(){
+
+            }
+
+            function quitarIntervalo(){
+
+            }
+
+        </script>
+
+    </body>
+
+</html>

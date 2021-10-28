@@ -7,21 +7,28 @@
   <title>Document</title>
 </head>
 <body>
+  <div>
+    <p id="target"></p>
+  </div>
   <script>
     function getEdadCompleta() {
+      let target = document.getElementById('target');
       let fActual = new Date();
-      let fNac = new Date(1993, 11, 20);
+      let fNac = new Date('1993, 11, 20');
+
+      console.log(fNac);
 
       let ms = fActual - fNac;
 
-      let anyos = ((((ms / 1000) /60) /60) /24) /3365.25;
-      let years =(Math.floor(anyos));
-      let meses = (anyos-years) * 12;
+      let anyos = ((((ms / 1000) /60) /60) /24) / 365.25;
+      let anyo =Math.floor(anyos);
+      let meses = (anyos-anyo) * 12;
       let mes = Math.floor(meses);
       let dias = parseInt((meses - mes) * 30);
 
-      let meses = Math.floor(meses);
+      target.innerHTML = `Tengo ${anyo} años, ${mes} meses, ${dias} días.`;
     }
+    getEdadCompleta();
   </script>
 </body>
 </html>
