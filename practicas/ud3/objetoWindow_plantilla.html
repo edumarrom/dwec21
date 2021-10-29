@@ -39,10 +39,11 @@
 
             objWindow();            //Llamo a la función antes para que muestre info antes de evento
 
+            window.name = 'Mi ventana';
+
             function objWindow() {
                 let cadena = 'Información:<ul>';
                 let objetivo = document.getElementById('parrafo');
-                window.name = 'Mi ventana';
 
                 cadena += `<li>Nombre: ${window.name}</li>`;
 
@@ -68,8 +69,6 @@
 
                 cadena += '</ul>';
 
-
-
                 objetivo.innerHTML = cadena;
             }
 
@@ -87,16 +86,17 @@
 
 
         cIframe += '<li>El id del sitio  en iframe1 es: '
-            + `${window.frames[0].frameElement.id}</li>`;
+                + `${window.frames[0].frameElement.id}</li>`;
         cIframe += '<li>La "src" de del sitio  en iframe1 es: '
-            + `${window.frames[0].frameElement.src}</li>`; // object HTMLIFrameElement.src
+                + `${window.frames[0].frameElement.src}</li>`; // object HTMLIFrameElement.src
 
-        window.frames[0].frameElement.src = 'https://www.as.com/';
+        // Machaco el iframe derecho
+        /* window.frames[1].frameElement.src = 'objetoWindow_plantilla.html'; */
 
-            cIframe += '<li>El id del sitio  en iframe2 es: '
-            + `"${window.frames[1].frameElement.id}"</li>`;
-            cIframe += '<li>La "src" de del sitio  en iframe2 es: '
-            + `${window.frames[1].frameElement.src}</li>`;
+        cIframe += '<li>El id del sitio  en iframe2 es: '
+                + `"${window.frames[1].frameElement.id}"</li>`;
+        cIframe += '<li>La "src" del sitio  en iframe2 es: '
+                + `${window.frames[1].frameElement.src}</li>`;
 
         cIframe += '</ul>';
 
@@ -108,47 +108,74 @@
             let ventanaNueva;
 
             function crearVentana(){
+                ventanaNueva = window.open('about:blank', '_blank', 'width=600,height=300');
+                ventanaNueva.document.write('<head><title>Página Secundaria</title></head>');
 
+                let cVentana = 'Propiedades de Ventanas:<ul>';
+                let objetivoVent = document.getElementById('ventanas');
+
+                cVentana += '<li>El padre de la nueva ventana es: '
+                        + `${ventanaNueva.parent.name}</li>`;
+                cVentana += '<li>El padre del iframe2: '
+                        + `${window.frames[1].parent.name}</li>`;
+                cVentana += '<li>La ventana que ha abierto la nueva ventana es: '
+                        + `${ventanaNueva.opener.name}</li>`;
+
+                cVentana += '</ul>';
+
+                objetivoVent.innerHTML = cVentana;
             }
+
 
             function cerrarVentana(){
-
+                ventanaNueva.close();
             }
 
-            function redimensionarVentana(){
 
+
+            function redimensionarVentana(){
+                ventanaNueva.focus();
+                ventanaNueva.resizeBy(10,10);
             }
 
             function moverVentana(){
-
+                ventanaNueva.focus();
+                ventanaNueva.moveBy(10,10);
             }
 
         //MÉTODOS DE INSTRUCCIONES DE TIEMPO
 
             function saludo(){
-
+                alert('VENATANA RETRASADA');
             }
 
+            let time;
 
             function retardoVentana(){
-
+                time = window.setTimeout(saludo, 3000);
             }
 
             function quitarRetardo(){
-
+                window.clearTimeout(time);
             }
 
 
             function reloj(){
+                let reloj = new Date();
+                hora = document.getElementById('reloj');
+
+                // Formatear hora;
+                hora.innerHTML = `${reloj.getHours()}:${reloj.getMinutes()}:${reloj.getSeconds()}`;
 
             }
 
+            let relojPeriodico;
             function intervaloReloj(){
-
+                relojPeriodico = setInterval(reloj, 1000);
             }
 
             function quitarIntervalo(){
-
+                window.clearInterval(relojPeriodico);
             }
 
         </script>
