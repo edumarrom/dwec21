@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookies en JS</title>
+  <script src="cookies.js"></script>
+</head>
+<body>
+  <article>
+    <h1>Manejo básico de cookies en JavaScript</h1>
+    <section>
+      <h2>Crear una cookie</h2>
+      <p>
+        Para crear una cookie debemos indicar como mínimo el nombre.
+        Las cookies se componen de los siguientes parámetros:
+      </p>
+      <ul>
+        <li>Fecha de expiración (en formato UTC): Fecha límite para que deje de existir.</li>
+        <li>Edad máxima (en segundos): Tiempo de vida máximo que queremos que exista.</li>
+        <li>Ruta: Ubicación de la cookie</li>
+        <li>Dominio: [supongo que el dominio será el de la web para la que estamos creando la cookie.]</li>
+      </ul>
+
+      <p>Voy a crear en este ejemplo dos cookies:</p>
+
+        <ol>
+          <li>Nombre de usuario</li>
+          <li>Sexo</li>
+        </ol>
+
+        <script>
+          crearCookie('nombre', 'Eduardo Martínez');
+          crearCookie('sexo', 'hombre');
+        </script>
+    </section>
+
+    <section>
+      <h2>Leer una cookie</h2>
+      <p>
+        Para leer una cookie hacemos una referencia a "document.cookie". Podemos usar directamente un <em>alert()</em>.
+      </p>
+
+      <p id="leer">Cookies actuales: </p>
+
+      <script>mostrarCookies('leer');</script>
+    </section>
+
+    <section>
+      <h2>Modificar una cookie</h2>
+      <p>
+        Para modificar una cookie tan sólo tenemos que referirnos a ella cmo si fuesemos a crearla de nuevo.
+        De ese modo conseguimos sobreescribirla con los nuevos datos que le introduzcamos. Vamos a hacer que
+        la cookie "sexo" cambie su valor de <em>hombre</em> a <em>mujer</em>.
+      </p>
+
+      <p id="modificar">Cookies tras modificación: </p>
+
+      <script>
+        crearCookie('sexo', 'mujer');
+        mostrarCookies('modificar');
+      </script>
+
+      <abbr>OJO! Para referirnos a una cookie existente es vital definir todos los parámetros con los que fue creada.</abbr>
+    </section>
+
+    <section>
+      <h2>Borrar una cookie</h2>
+      <p>
+        Para borrar una cookie es tan sencillo como indicarle una fecha de expiración anterior a nuestra fecha actual.
+      </p>
+      <p id="borrar">Cookies tras borrado: </p>
+
+      <script>
+        borrarCookie('nombre');
+        borrarCookie('sexo');
+        mostrarCookies('borrar');
+      </script>
+
+      <abbr>Como consejo usar el segundo 1 según la fecha UNIX. Esto es el 1970/01/01, a las 00:00:01.</abbr>
+    </section>
+  </article>
+</body>
+</html>
