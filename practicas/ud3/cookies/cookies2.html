@@ -9,14 +9,14 @@
 </head>
 <body>
   <article>
-    <h1>Cookies en JavaScript: Ejemplo avanzado</h1>
+    <h1>Cookies en JavaScript: Ejemplo sencillo</h1>
     <section>
-      <h2>Menú (avanzado)</h2>
+      <h2>Menú</h2>
       <button type="button" onclick="getCookies()">Ver todas las cookies</button>
-      <button type="button" onclick="cookieWizard()">Crear cookie</button>
-      <button type="button" onclick="cookieWizard()">Modificar cookie</button>
-      <button type="button" onclick="getCookie()">Ver cookie</button>
-      <button type="button" onclick="delCookie()">Borrar cookie</button>
+      <button type="button" onclick="setCookie('nombre', 'Eduardo')">Crear cookie con mi nombre</button>
+      <button type="button" onclick="setCookie('apellido', 'Martinez')">Crear cookie con mi apellido</button>
+      <button type="button" onclick="setCookie('nombre', '', 0)">Borrar cookie de mi nombre</button>
+      <button type="button" onclick="delCookie('apellido', '', 0)">Borrar cookie de mi apellido</button>
       <button type="button" onclick="limpiarResultado()">Limpiar resultados</button>
     </section>
 
