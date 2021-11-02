@@ -14,15 +14,15 @@
       let lista = '<ol>';
       for (const n in navigator) {
 
-          if (n == 'plugins') {
+          if (navigator[n] == 'plugins') {
             listaPlugin = '<ul>';
             for (const p in navigator[n]) {
               listaPlugin += `<li>${p} = ${navigator[n][p]}</li>`;
             }
-
             listaPlugin += '</ul>';
             lista += listaPlugin;
           }
+
           lista += `<li>${n} = ${navigator[n]}</li>`;
       }
 
