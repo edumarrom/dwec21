@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigator: Propiedades y métodos</title>
+</head>
+<body>
+  <p id="resultado"></p>
+  <script>
+    // Recorre todos los elementos del objeto Navigator //
+    function recorreNavigator() {
+      let lista = '<ol>';
+      for (const n in navigator) {
+
+          if (n == 'plugins') {
+            listaPlugin = '<ul>';
+            for (const p in navigator[n]) {
+              listaPlugin += `<li>${p} = ${navigator[n][p]}</li>`;
+            }
+
+            listaPlugin += '</ul>';
+            lista += listaPlugin;
+          }
+          lista += `<li>${n} = ${navigator[n]}</li>`;
+      }
+
+      lista += '</ol>';
+      document.getElementById('resultado').innerHTML += lista;
+    }
+
+    recorreNavigator();
+  </script>
+</body>
+</html>
