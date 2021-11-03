@@ -14,13 +14,22 @@
       let lista = '<ol>';
       for (const n in navigator) {
 
-          if (navigator[n] == 'plugins') {
-            listaPlugin = '<ul>';
-            for (const p in navigator[n]) {
-              listaPlugin += `<li>${p} = ${navigator[n][p]}</li>`;
+          if (n == 'plugins') {
+            let listaPlugin = '<ul>';
+            for (const p in navigator.plugins) {
+              listaPlugin += `<li>${p} = ${navigator.plugins[p]}</li>`;
             }
             listaPlugin += '</ul>';
             lista += listaPlugin;
+          }
+
+          if (n == 'mimeTypes') {
+            let listaMime = '<ul>';
+            for (const m in navigator.mimeTypes) {
+              listaMime += `<li>${m} = ${navigator.mimeTypes[m]}</li>`;
+            }
+            listaMime += '</ul>';
+            lista += listaMime;
           }
 
           lista += `<li>${n} = ${navigator[n]}</li>`;
