@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +13,11 @@
     function cambiaColor(){
       let target = window.parent.frames[0].document.getElementById("target").value;
       let color = window.parent.frames[0].document.getElementById("color").value;
+
+      /*
+      let target = parent.frames[0].target.value;
+      let color = parent.frames[0].color.value;
+      */
 
       window.parent.frames[parseInt(target)].document.bgColor = color;
     }
