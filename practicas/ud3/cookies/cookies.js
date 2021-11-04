@@ -1,6 +1,8 @@
 // Variables globales //
 /* var resultado = document.getElementById('resultado'); // Por qué no funciona???*/
 
+const Cookies = require("cookies");
+
 // Crear o Modificar cookie //
 function setCookie(nombre, valor, diasExp = 1, ruta = '/', sameSite = 'None', secure = 'secure') {
   let fechaExp = new Date();
@@ -32,28 +34,43 @@ function getCookies(target = 'resultado') {
 function getCookie() {
   // Devuelve el valor de una cookie específica, o cadena vacía si no existe. //
   function gc(nombre) {
-    // let nom = nombre+'=';
-    let cookies = document.cookie.split(';');
-
-    // TODO: Cuando busco una cookie que no es la primera del array se vuelve loquísimo. Pendiente de arreglar.
-    for (const c of cookies) {
-      let cookie = c;
-
-      while (cookie.charAt(0) == " "){
-        cookie.substring(1);
+    let nom = nombre + '=';
+    let cookies = decodeURIComponent(document.cookie).split(';');
+    console.log("chorizo=" + cookies);
+    // TODO: Se vuelve loquísimo. Pendiente de arreglar.
+    for(let i = 0; i <cookies.length; i++) {
+      c = cookies[i];
+      while (c.charAt(0) == ' '){
+        c.substring(1);
       }
-
-      if (cookie.indexOf(`${nombre}=`) == 0) {
-        return cookie.substring(nombre.length, cookie.length);
+      console.log("cookie=" + c);
+      if (c.indexOf(nom) == 0) {
+        return c.substring(nom.length, c.length);
       }
     }
 
     return "";
   }
 
+  /* function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  } */
+
   limpiarResultado();
   let nombre = prompt('Introduzca nombre de la cookie: ');
-  document.getElementById('resultado').innerHTML = `"${nombre}${gc(nombre)}"`; // TODO: getElement como variable
+  document.getElementById('resultado').innerHTML = `"${nombre} = ${gc(nombre)}"`; // TODO: getElement como variable
 }
 
 // Borrar una cookie //
