@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>3A01</title>
 </head>
 <body>
   <script>
-    function muestraCaracteres(cadena) {
+    function muestraCaracteres() {
+
+      cadena = prompt('Introduzca nombre: ', '3duard0');
 
       for (let i = 0; i < cadena.length; i++) {
-        /* Método con isNaN:
-        isNaN(cadena.charAt(i))? document.write(cadena.charAt(i)) : null; */
+        /* Método con isNaN: */
+        isNaN(cadena.charAt(i))? alert(cadena.charAt(i)) : null;
 
         /* Método con includes():
         cadena.charAt(i).includes(/[0-9]/)? document.write(cadena.charAt(i)) : null; */
@@ -23,8 +25,7 @@
       }
     }
 
-
-    muestraCaracteres('Paco3Dominguez');
+    muestraCaracteres();
   </script>
 </body>
 </html>

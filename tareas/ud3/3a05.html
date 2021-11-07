@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3A05</title>
+</head>
+<body>
+  <script>
+    /*Muestra los meses, días y años que tienes,
+    haciendo uso de los métodos del objeto Date */
+
+    function getEdadCompleta(y = 1993, m = 11, d = 20) {
+      let fActual = new Date();
+      let fNac = new Date(`${y}, ${m}, ${d}`);
+
+      console.log(fNac);
+
+      let ms = fActual - fNac;
+
+      let anyos = ((((ms / 1000) /60) /60) /24) / 365.25;
+      let anyo =Math.floor(anyos);
+      let meses = (anyos-anyo) * 12;
+      let mes = Math.floor(meses);
+      let dias = parseInt((meses - mes) * 30);
+
+      alert(`Tengo ${anyo} años, ${mes} meses, ${dias} días.`);
+    }
+    getEdadCompleta();
+  </script>
+</body>
+</html>

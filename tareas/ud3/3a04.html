@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3A04</title>
+</head>
+<body>
+  <script>
+    /* Genera 10  números aleatorios enteros entre 0 y 20 */
+
+    function generaNumeros (t, n) {
+      let resultado = '[';
+      for (let i = 0; i <= n; i++) {
+        resultado += `${(Math.random() * t).toFixed() + (i != n ? ', ' : ']')}`;
+      }
+      alert(resultado);
+    }
+
+    generaNumeros(20, 10);
+  </script>
+</body>
+</html>

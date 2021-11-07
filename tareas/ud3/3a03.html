@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3A03</title>
+</head>
+<body>
+  <script>
+    /*
+    Solicita el ingreso de la coordenada de un punto. El formato a ingresar por teclado es:
+    - (999,999)
+    - Los números pueden tener entre 1 y 3 dígitos.
+    Usa el método test( ) */
+    function esCoordenada() {
+      const patron = /\([0-9]{3}\),\([0-9]{3}\)/;
+      let coordenada = prompt('Ingrese coordenada', '(363),(842)');
+      alert(`esCoordenada: ${patron.test(coordenada)}`);
+    }
+
+    esCoordenada();
+  </script>
+</body>
+</html>

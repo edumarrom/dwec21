@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3A06</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>Tipo de navegador: <span id="tipo"></span></li>
+      <li>Versión del navegador: <span id="version"></span></li>
+      <li>Sistema operativo: <span id="so"></span></li>
+    </ul>
+  </div>
+  <script>
+      /*
+      Permite identificar las características de la plataforma sobre la
+      cual se ejecuta la aplicación web. Ejemplo:
+      - Tipo de navegador
+      - Versión del navegador
+      - Sistema operativo */
+
+      function infoNavegador() {
+        document.getElementById('tipo').innerHTML = `${navigator.appCodeName} ${navigator.appName}`;
+        document.getElementById('version').innerHTML = navigator.product;
+        document.getElementById('so').innerHTML = navigator.oscpu;
+      }
+
+      infoNavegador();
+  </script>
+</body>
+</html>

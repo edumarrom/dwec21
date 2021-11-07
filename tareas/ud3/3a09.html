@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3a09</title>
+</head>
+<body>
+  <div>
+    <p id="visitas"></p>
+  </div>
+  <script>
+    /* Contador de visitas con aviso de cookies.
+      - Crear aplicación que muestre el número de veces que se ha
+          entrado en ella.
+
+      - Se hará mediante una cookie que caducará después de un año.
+
+      - En primer lugar se avisará con un cuadro de confirmación,
+          que se usarán cookies. Si el usuario no acepta cookies
+          se borrará y no se mostrarán las visitas.
+
+      - El cuadro debe salir una vez por sesión. */
+
+    // Crear o Modificar cookie //
+    function setCookie(nombre, valor, diasExp = 1,
+                        ruta = '/', sameSite = 'None',
+                        secure = 'secure') {
+      let fechaExp = new Date();
+      fechaExp.setTime(fechaExp.getTime() + diasExp * 24 * 60 * 60 * 1000);
+      document.cookie =
+        nombre + '=' + valor + ';'
+        + 'expires=' + fechaExp.toUTCString() + ';'
+        + 'path=' + ruta + ';'
+        + 'SameSite=' + sameSite + ';' + secure;
+    }
+
+    function getCookie(cnombre) {
+      let nombre = cnombre + '=';
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+
+      for (const i of ca) {
+        let c = i;
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(nombre) == 0) {
+          return c.substring(nombre.length, c.length);
+        }
+      }
+
+      return "";
+    }
+
+    function delCookie(cnombre) {
+      setCookie(cnombre, '', 0);
+    }
+
+    if (getCookie('aceptar') == '') {
+      if (prompt('¿Aceptas cookies (s/n)?', 's') == 's') {
+        setCookie('aceptar', true);
+        window.location.reload();
+      } else {
+        delCookie('aceptar');
+        delCookie('visitas');
+      }
+    } else {
+      let visitas = getCookie('visitas');
+      console.log(visitas);
+      if (visitas == null) {
+        setCookie('visitas', 0);
+      } else {
+        setCookie('visitas', Number(visitas)+1);
+      }
+
+      document.getElementById('visitas').innerHTML = 'Número de visitas: '
+                                                    + getCookie('visitas');
+    }
+  </script>
+</body>
+</html>
