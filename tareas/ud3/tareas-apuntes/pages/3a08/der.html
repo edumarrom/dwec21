@@ -8,13 +8,30 @@
 </head>
 <body>
   <button onclick="cambiaColor()">Cambiar Color</button>
+  <button onclick="cambiaColor(true)">Auto</button>
+  <button onclick="limpiarMarcos()">Limpiar</button>
 
   <script>
-    function cambiaColor(){
-      let target = parent.frames[0].target.value;
-      let color = parent.frames[0].color.value;
 
-      window.parent.frames[parseInt(target)].document.bgColor = color;
+    function cambiaColor(auto = false){
+
+      if (!auto) {
+        let target = parent.frames[0].target.value;
+        let color = parent.frames[0].color.value;
+        window.parent.frames[parseInt(target)].document.bgColor = color;
+      } else {
+        let colores = ['cyan', 'magenta', 'yellow', 'black'];
+
+        for (let i = 0; i < colores.length; i++) {
+          window.parent.frames[i].document.bgColor = colores[i];
+        }
+      }
+    }
+
+    function limpiarMarcos() {
+      for (let i = 0; i < window.parent.frames.length; i++) {
+        window.parent.frames[i].document.bgColor = null;
+      }
     }
   </script>
 </body>

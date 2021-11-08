@@ -4,16 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3A05</title>
+  <title>3a05</title>
 </head>
 <body>
+  <h1>Ejercicio 3a05 - Obtener edad completa</h1>
+
   <script>
     /*Muestra los meses, días y años que tienes,
     haciendo uso de los métodos del objeto Date */
 
-    function getEdadCompleta(y = 1993, m = 11, d = 20) {
+    function getEdadCompleta() {
+
+      function getFechaNac() {
+        let fechaNac = prompt('Introduce tu fecha de nacimiento "(dd/mm/yyyy)"', '20/11/1993');
+        let f = fechaNac.split('/');
+
+        return f;
+      }
+
+      let n = getFechaNac();
       let fActual = new Date();
-      let fNac = new Date(`${y}, ${m}, ${d}`);
+      let fNac = new Date(`${n[2]}, ${n[1]}, ${n[0]}`);
 
       console.log(fNac);
 
@@ -29,5 +40,7 @@
     }
     getEdadCompleta();
   </script>
+
+  <button><a href="/index.html">Volver</a></button>
 </body>
 </html>

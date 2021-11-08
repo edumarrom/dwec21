@@ -7,6 +7,7 @@
   <title>3a09</title>
 </head>
 <body>
+  <h1>Ejercicio 3a09 - Contador de visitas</h1>
   <div>
     <p id="visitas"></p>
   </div>
@@ -58,26 +59,33 @@
       setCookie(cnombre, '', 0);
     }
 
+    /* Aceptar uso de cookies */
     if (getCookie('aceptar') == '') {
       if (prompt('¿Aceptas cookies (s/n)?', 's') == 's') {
-        setCookie('aceptar', true);
+        setCookie('aceptar', true, 365);
         window.location.reload();
       } else {
+        /* Rechazar uso de cookies */
         delCookie('aceptar');
         delCookie('visitas');
       }
     } else {
+      /* Contador de visitas */
       let visitas = getCookie('visitas');
       console.log(visitas);
       if (visitas == null) {
-        setCookie('visitas', 0);
+        setCookie('visitas', 0, 365);
       } else {
-        setCookie('visitas', Number(visitas)+1);
+        setCookie('visitas', Number(visitas)+1), 365;
       }
 
       document.getElementById('visitas').innerHTML = 'Número de visitas: '
                                                     + getCookie('visitas');
     }
   </script>
+
+  <button onclick="window.location.reload();">Recargar</button>
+  <button onclick="delCookie('aceptar'); window.location.reload();">Expirar cookie</button>
+  <button><a href="/index.html">Volver</a></button>
 </body>
 </html>
