@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Storage 1</title>
+</head>
+<body>
+  <script>
+    /* Web Storage miniño */
+
+    // Comporobamos que el navegador las soporta
+    if (typeof(Storage) !== "undefined") {
+      alert('El navgegador acepta webStorage');
+
+      localStorage.setItem('nombre', 'manolito de la hera');
+      localStorage.setItem('edad', '27');
+    }
+
+    // Consultar un elemento maquina
+    alert(localStorage.getItem('nombre'))
+    alert(localStorage.getItem('edad'))
+
+    // Borrar un elemento artista
+    alert(`Elemento "${localStorage.getItem('nombre')}" eliminado.`);
+    localStorage.removeItem('nombre');
+
+    // Borrar todos los elementos fiera
+    localStorage.clear();
+    alert('Borrados todos los elementos weStorage.');
+  </script>
+</body>
+</html>
