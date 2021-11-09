@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3r02</title>
+</head>
+<body>
+  <script>
+    /* Realiza un script que pida al usuario una frase. De ella se extraerá
+    la parte comprendida entre unas marcas de inicio y fin (distintas) que
+    serán indicadas por el usuario. */
+
+    function muestraPalabras() {
+      let frase = prompt('Introduce una frase', 'Traje comida casera');
+      let inicio = prompt('Introduce caracter inicial', 'e');
+      let final = prompt('Introduce caracter final', 'c');
+      let palabras = frase.split(' ');
+
+
+
+      alert(palabras[0]);
+      alert(palabras[palabras.length - 1]);
+      alert(`Nº de palabras: ${palabras.length}`);
+    }
+  </script>
+</body>
+</html>
