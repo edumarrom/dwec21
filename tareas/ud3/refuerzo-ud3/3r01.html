@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3r01</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    /* Crear una aplicación que muestre 2000 cuadros de color aleatorio
+    de 50 x 50 píxeles. Su posición en pantalla será también aleatoria.
+
+    Fuentes:
+    - Uso de canvas: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+    - Modificar atributos html: https://nickmccullum.com/javascript/modify-html-elements-using-javascript/
+    - Pasar de decimal a Hex: https://www.w3docs.com/snippets/javascript/how-to-convert-decimal-to-hexadecimal-in-javascript.html
+    - Recargar al modificat ventana: Apuntes de la unidad 3*/
+
+    function colorAleatorio () {
+      let c;
+      do {
+        c = Math.random()*100000000;
+      } while (c > 16777215)  ; // i.e. FFFFFF
+
+      return Math.trunc(c).toString(16);    // Sin truncado no funciona. ¿Por qué?
+    }
+
+    function numAleatorio(tope) {
+      return (Math.random()* tope).toFixed();
+    }
+
+    function creaCuadrado(canvas = document.getElementById('canvas'),
+                          x = numAleatorio(window.innerWidth),
+                          y = numAleatorio(window.innerHeight)) {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = `#${colorAleatorio()}`;
+      ctx.fillRect(x, y, 50, 50);
+    }
+
+    crearCuadrados();
+
+    function crearCuadrados() {
+      let canvas = document.querySelector('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      for (let i = 0; i < 2000; i++) {
+      creaCuadrado();
+    }
+    console.log('ventana = {ancho=' + window.innerWidth
+      + '; alto=' + window.innerHeight + '}');
+    }
+
+    window.onresize = crearCuadrados;
+
+  </script>
+</body>
+</html>
