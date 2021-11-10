@@ -7,22 +7,75 @@
   <title>3r02</title>
 </head>
 <body>
+
+  <form>
+    <label for="frase">Introduce una frase:</label>
+    <input type="text" name="frase" id="frase" value= "JavaScript es así, no lo he creado yooo">
+    <br>
+    <label for="inicio">Introduce caracter inicial:</label>
+    <input type="text" name="inicio" id="inicio" value="s">
+    <br>
+    <label for="final">Introduce caracter final:</label>
+    <input type="text" name="final" id="final" value="y">
+    <br>
+    <button type="button" onclick="trimPalabras()">Ejecutar</button>
+  </form>
+
+  <div id="resultado"></div>
   <script>
     /* Realiza un script que pida al usuario una frase. De ella se extraerá
     la parte comprendida entre unas marcas de inicio y fin (distintas) que
     serán indicadas por el usuario. */
 
-    function muestraPalabras() {
-      let frase = prompt('Introduce una frase', 'Traje comida casera');
-      let inicio = prompt('Introduce caracter inicial', 'e');
-      let final = prompt('Introduce caracter final', 'c');
+    function trimPalabras() {
+      /* let frase = prompt('Introduce una frase', 'JavaScript es así, no lo he creado yooo');
+      let inicio = prompt('Introduce caracter inicial', 's');
+      let final = prompt('Introduce caracter final', 'y'); */
+
+      let frase = document.getElementById('frase').value;
+      let inicio = document.getElementById('inicio').value;
+      let final = document.getElementById('final').value;
+
       let palabras = frase.split(' ');
 
+      let esInicio = false;
+      let esFinal = false;
 
+      let parte = ''
+      let resultado = `<ul>
+        <li>La oración es: "${frase}".</li>
+        <li>Los delimitadores son: "${inicio}" y "${final}".</li>`;
 
-      alert(palabras[0]);
-      alert(palabras[palabras.length - 1]);
-      alert(`Nº de palabras: ${palabras.length}`);
+      for(let i = 0; i <palabras.length; i++) {
+        p = palabras[i];
+
+        console.log(palabras);
+
+        if (!esInicio && p.includes(inicio)) {
+          console.log(`inicio: ${p}`)
+          esInicio = true;
+          palabras.shift();
+          parte += palabras[i] + ' ';
+          continue;
+        }
+
+        if (esInicio && !esFinal && p.includes(final)) {
+          console.log(`final: ${p}`)
+          esFinal = true;
+          palabras.pop();
+        }
+
+        if (esInicio && !esFinal) {
+          parte += p + ' ';
+        }
+
+        console.log(`parte: ${resultado}`)
+      }
+
+      resultado += `<li>La parte entre los delimitadores de la oración es: "${parte}".</li>
+        </ul>`;
+
+      document.getElementById('resultado').innerHTML = resultado;
     }
   </script>
 </body>
