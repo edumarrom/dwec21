@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4a01</title>
+</head>
+<body>
+  <script>
+  /* Crea un programa que le pida al usuario que introduzca una serie de
+  números y calcule la media aritmética.
+  - Se debe resolver el problema definiendo una función con parámetros REST
+      e invocándola con un argumento que utilice el operador SPREAD */
+
+  let miArray = [1,2,3,4];
+
+  function media(...nums) {
+    let resultado = 0;
+    for (let n of nums) {
+      resultado += n;
+    }
+    return document.write(resultado / nums.length);
+  }
+
+  media(3, 5, 6, ...miArray, 8)
+  </script>
+</body>
+</html>
