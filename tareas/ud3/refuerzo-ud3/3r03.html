@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3r03</title>
+</head>
+<body>
+
+  <div>
+    <form>
+      <label for="hora">Introduce una hora (hh:mm:ss / hh:mm)</label>
+      <br>
+      <input type="text" name="hora" id="hora" value="16:20">
+      <button type="button" id="comprobarHora">Comprobar</button>
+    </form>
+  </div>
+
+  <div id="resultado">
+
+  </div>
+
+  <script>
+    /* Valida el ingreso de una hora con el formato hh:mm:ss o hh:mm. */
+
+    document.getElementById('comprobarHora').addEventListener(
+      'click', comprobarHora);
+
+    function comprobarHora() {
+      const resultado = document.getElementById('resultado');
+      const entrada = document.getElementById('hora').value;
+
+      let correcto = false;
+
+      const bien = `La hora (${entrada}) es correcta.`
+      let mal = 'La hora (' + entrada + ') no es correcta: '
+
+      const formato = 'Tiene que tener el formato (hh:mm:ss ó hh:mm).'
+      const cantidad = 'Las horas no pueden superar de 23, ni los minutos y segundos de 59.';
+
+      const patron = /(\d{2}\:\d{2}\:\d{2})|(\d{2}\:\d{2})/;  // hh:mm:ss || hh:mm
+
+      if (patron.test(entrada)) {
+        const valores = entrada.split(':');
+        valores[0] < 24 && valores[1] < 60 ?
+          valores.length == 2 ?
+            correcto = true
+            : valores[2] < 60 ? // else-if
+              correcto = true
+              : mal += cantidad
+        : mal += cantidad;
+      } else {
+        mal += formato;
+      }
+
+      correcto ?
+        resultado.innerHTML = bien
+        : resultado.innerHTML = mal;
+    }
+  </script>
+</body>
+</html>

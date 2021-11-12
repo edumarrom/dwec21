@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3r04</title>
+</head>
+<body>
+  <button id="boton7" onclick="iniciarReloj()">Iniciar/Detener</button>
+
+  <p id="reloj"></p>
+
+  <script>
+    /* Establece un título del documento (document.title) de forma dinámica,
+      mostrando cada segundo la hora actual, */
+
+    function reloj(){
+      function cero(valor) {
+        return valor < 10 ? valor = '0' + valor : valor;
+      }
+
+      let reloj = new Date();
+
+      let h = cero(reloj.getHours());
+      let m = cero(reloj.getMinutes());
+      let s = cero(reloj.getSeconds());
+      let hora = h + ":" + m + ":" + s;
+
+      document.title = hora;
+    }
+
+    let relojPeriodico;
+
+    function iniciarReloj(){
+        relojPeriodico == null ?
+          relojPeriodico = setInterval(reloj, 1000)
+          : detenerReloj();
+    }
+
+    function detenerReloj(){
+        window.clearInterval(relojPeriodico);
+        relojPeriodico = null;
+    }
+  </script>
+</body>
+</html>
