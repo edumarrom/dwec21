@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4a02</title>
+</head>
+<body>
+  <script>
+    /* Crear un vector de 10 elementos con valores aleatorios comprendidos
+    entre 0 y 1000. Buscar el menor y el mayor. Generar otro vector a partir
+    de él que deje fuera dichos valores. Usar solo los métodos vistos hasta ahora */
+
+    function numAleatorio(n = 1000) {
+      let resultado;
+      do {
+        resultado = Math.trunc(Math.random()*n);
+      } while (resultado >= n);
+
+      return resultado;
+    }
+
+    function listaNumeros(n = 10, max = 1000) {
+      let resultado = new Array(n);
+
+      /* TODO: Usar método push */
+      for (let i = 0; i < resultado.length; i++) {
+        resultado[i] = numAleatorio(max);
+      }
+
+      return resultado;
+    }
+
+    function menor(array) {
+      return Math.min(...array);
+    }
+
+    function mayor(array) {
+      return Math.max(...array);
+    }
+
+    function principal() {
+      const numeros = listaNumeros(10, 1000);
+      let resultado = [...numeros];
+      const elMenor = menor(resultado);
+      const elMayor = mayor(resultado);
+
+      resultado.splice(numeros.indexOf(elMenor), 1);
+      resultado.splice(numeros.indexOf(elMayor), 1);
+
+      console.log('array original: ' + numeros);
+      return resultado;
+    }
+
+    console.log(principal());
+  </script>
+</body>
+</html>
