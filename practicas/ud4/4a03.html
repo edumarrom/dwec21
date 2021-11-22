@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4a03</title>
+</head>
+<body>
+  <script>
+    /* A partir del ejercicio anterior, 4a02, realizar el mismo objetivo pero
+    haciendo uso de las funciónes de orden superior de los Arrays*/
+
+    function numAleatorio(n = 1000) {
+      let resultado;
+      do {
+        resultado = Math.trunc(Math.random()*n);
+      } while (resultado >= n);
+
+      return resultado;
+    }
+
+    function listaNumeros(n = 10, max = 1000) {
+      let resultado = [];           // Si el array tiene un tamaño predefinido, push() no funciona
+
+      /* TODO: Usar método push */
+      for (let i = 0; i < n; i++) {
+        resultado.push(numAleatorio(max));
+      }
+
+      return resultado;
+    }
+
+    function principal(arr = listaNumeros(10, 1000)) {
+
+      console.log('array original: ' + arr);
+      return arr.filter(num => num == Math.min(...arr) || num == Math.max(...arr));
+    }
+
+    console.log(principal());
+  </script>
+</body>
+</html>
