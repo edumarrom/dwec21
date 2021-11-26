@@ -14,6 +14,42 @@
      * fuera el menor y el mayor  elementos, pase a ser un método del objeto Array.
     */
 
+    Array.prototype.numAleatorio = function (n = 1000) {
+      let resultado;
+      do {
+        resultado = Math.trunc(Math.random()*n);
+      } while (resultado >= n);
+
+      return resultado;
+    }
+
+    Array.prototype.listaNumeros = function (n = 10, max = 1000) {
+      let resultado = [];  // Si el array se declaró mediante el constructor de Arrays, push() no funciona.
+      for (let i = 0; i < n; i++) {
+        resultado.push(resultado.numAleatorio(max));
+      }
+      return resultado;
+    }
+
+    Array.prototype.menorMayor = function (arr = []) {
+      arr = arr.listaNumeros();
+      console.log('array original: ' + arr);
+
+      // let mayor = arr[0];
+      // let menor = arr[0];
+      let res = [arr[0], arr[0]];
+
+      arr.forEach(elem => elem > res[0] ? res[0] = elem : null);
+      arr.forEach(elem => elem < res[1] ? res[1] = elem : null);
+
+      // return [mayor, menor];
+      return res;
+      // +eficiente / -legible
+    }
+
+    let algo = new Array();
+
+    console.log(algo.menorMayor());
   </script>
 </body>
 </html>
