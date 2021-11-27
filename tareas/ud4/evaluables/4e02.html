@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    li {
+      margin: 1em 0;
+    }
+  </style>
   <title>4e02</title>
 </head>
 <body>
@@ -38,7 +43,44 @@
      *  g) Las palabras Ordenadas de la 'z' a la 'a'
      */
 
+    // Selecciona los li que quiero modificar
+    const step = document.querySelectorAll('.step li');
 
+    // Genera el array en base al número de palabras que el usuario quiera introducir
+    let palabras = [];
+    let aux;
+    do {
+      aux = prompt('Introduce una palaba (Vacío para finalizar)');
+      palabras.push(aux);
+      !palabras[palabras.length-1] ? palabras.pop() : null;
+    } while (aux);
+
+    // a. Muestra las palabras
+    function muestraPalabras(arr, n) {
+      arr.forEach(i => {
+      step[n].innerHTML += `<br>=> ${i}`
+      });
+    }
+
+    muestraPalabras(palabras, 0);
+
+    // b. Muestra las palabras al reves
+    muestraPalabras([...palabras].reverse(), 1);
+
+    // c. La primera palabra
+    step[2].innerHTML += `<br>=> ${[...palabras].shift()}.`;
+
+    // d. La última palabra
+    step[3].innerHTML += `<br>=> ${[...palabras].pop()}.`;
+
+    // e. número de palabras
+    step[4].innerHTML +=`<br>=> Número de palabras: ${palabras.length}.`;
+
+    // f. Orden alfabético
+    muestraPalabras([...palabras].sort(), 5);
+
+    // g. Orden alfabético descendente
+    muestraPalabras([...palabras].sort().reverse(), 6);
   </script>
 </body>
 </html>

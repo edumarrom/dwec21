@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    li {
+      margin: 1em 0;
+    }
+  </style>
   <title>4e01</title>
 </head>
 <body>
@@ -41,7 +46,8 @@
     }
 
     // Muestro el array
-    document.getElementsByTagName('li')[0].innerHTML += `<br> => impares = Array(${impares.length}) [${impares}]`;
+    document.getElementsByTagName('li')[0].innerHTML +=
+      `<br> => impares = Array(${impares.length}) [${impares}]`;
 
     // a. Calculamos sumatorio
 
@@ -63,19 +69,23 @@
     // c. Lee valor pasado por el usuario y búscalo en el array.
     const aguja = prompt('Indica un valor a buscar en el array', '19');
     impares.some(n => n == aguja) ?
-      (step[2].innerHTML += `<br> => El elemento "${aguja}" existe en el array, y ha sido borrado.`,
+      (step[2].innerHTML += `<br> => El elemento "${aguja}"
+        existe en el array, y ha sido borrado.`,
       impares = impares.filter(n => n != aguja))
       : step[2].innerHTML += `<br> El elemento "${aguja}" no existe en el array.`;
 
     // d. Si encuentra al elemento, lo borra. Muestro el array para verificar
-    document.getElementsByTagName('li')[4].innerHTML += `<br> => impares = Array(${impares.length}) [${impares}]`;
+    document.getElementsByTagName('li')[4].innerHTML +=
+      `<br> => impares = Array(${impares.length}) [${impares}]`;
 
     // e. Ordenar el array ascendente y descendentemente
     impares.sort((a,b) => a - b);
-    document.getElementsByTagName('li')[5].innerHTML += `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
+    document.getElementsByTagName('li')[5].innerHTML +=
+      `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
 
     impares.sort((a,b) => b - a);
-    document.getElementsByTagName('li')[5].innerHTML += `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
+    document.getElementsByTagName('li')[5].innerHTML +=
+      `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
   </script>
 </body>
 </html>
