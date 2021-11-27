@@ -7,6 +7,18 @@
   <title>4e01</title>
 </head>
 <body>
+  <div>
+    <ol>
+      <li>Crea un array con los números impares del 1 al 21. (CE4b, CE4c, CE4d,  CE4i)</li>
+      <ol type="a" class="step">
+        <li>Calcula el sumatorio de dichos números impares e imprime el resultado.</li>
+        <li>Muestra en orden inverso el array creado anteriormente.</li>
+        <li>Lea un valor que escriba el usuario y búsquelo en el array. Indique si la búsqueda tuvo éxito indicando</li>
+        <li>En caso de tener éxito, borra su valor.</li>
+        <li>Muéstrelo ordenado de forma ascendente, y a continuación de forma descendente</li>
+      </ol>
+    </ol>
+  </div>
   <script>
     /*
     1) Crea un array con los números impares del 1 al 21. (CE4b, CE4c, CE4d,  CE4i)
@@ -16,7 +28,54 @@
       la posición o si no tuvo éxito.
       d)  En caso de tener éxito, borra su valor.
       e)  Muéstrelo ordenado de forma ascendente, y a continuación de forma descendente
- */
+    */
+
+    // Selecciono los li que quiero modificar
+    const step = document.querySelectorAll('.step li');
+
+    // Generamos array de impares
+    let impares = [];
+
+    for (let i = 1; i < 22; i+=2) {
+      impares.push(i);
+    }
+
+    // Muestro el array
+    document.getElementsByTagName('li')[0].innerHTML += `<br> => impares = Array(${impares.length}) [${impares}]`;
+
+    // a. Calculamos sumatorio
+
+    // Con forEach
+    let sumForEach = 0;
+    impares.forEach(n => sumForEach += n);
+
+    // Con reduce
+    let sumReduce
+    sumReduce = impares.reduce((sum, n) => sum += n);
+
+    // Imprimimos el valor
+    step[0].innerHTML += `<br> => La suma de dichos número impares es: ${sumReduce}.`;
+
+    // b. Muestra el array invertido
+    impares.reverse();
+    step[1].innerHTML += `<br> => impares = Array(${impares.length}) [${impares}]`;
+
+    // c. Lee valor pasado por el usuario y búscalo en el array.
+    const aguja = prompt('Indica un valor a buscar en el array', '19');
+    impares.some(n => n == aguja) ?
+      (step[2].innerHTML += `<br> => El elemento "${aguja}" existe en el array, y ha sido borrado.`,
+      impares = impares.filter(n => n != aguja))
+      : step[2].innerHTML += `<br> El elemento "${aguja}" no existe en el array.`;
+
+    // d. Si encuentra al elemento, lo borra. Muestro el array para verificar
+    document.getElementsByTagName('li')[4].innerHTML += `<br> => impares = Array(${impares.length}) [${impares}]`;
+
+    // e. Ordenar el array ascendente y descendentemente
+    impares.sort((a,b) => a - b);
+    document.getElementsByTagName('li')[5].innerHTML += `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
+
+    impares.sort((a,b) => b - a);
+    document.getElementsByTagName('li')[5].innerHTML += `<br> => impares en orden ascendente = Array(${impares.length}) [${impares}]`;
   </script>
 </body>
 </html>

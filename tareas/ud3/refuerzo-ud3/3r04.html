@@ -31,10 +31,12 @@
       document.title = hora;
     }
 
-
+    let relojPeriodico;
 
     function iniciarReloj(){
-          setInterval(reloj, 1000);
+        relojPeriodico == null ?
+          relojPeriodico = setInterval(reloj, 1000)
+          : detenerReloj();
     }
 
     function detenerReloj(){
