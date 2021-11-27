@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    li {
+      margin: 1em 0;
+    }
+  </style>
+  <title>4e03</title>
+</head>
+<body>
+  <ol>
+    <li>Usando métodos de arrays de orden superior: (CE4b, CE4c, CE4d,  CE4i)</li>
+    <ol class="step" type="a">
+     <li>Crea un vector con 5 valores numéricos.</li>
+     <li>Comprueba si son todos enteros positivos.</li>
+     <li>Devuelve en un nuevo array el triple sus valores.</li>
+     <li>Calcula el resultado de multiplicar todos los valores del nuevo array.</li>
+    </ol>
+  </ol>
+  <script>
+    /**
+     * Usando métodos de arrays de orden superior: (CE4b, CE4c, CE4d,  CE4i)
+     *  a) Crea un vector con 5 valores numéricos.
+     *  b) Comprueba si son todos enteros positivos.
+     *  c) Devuelve en un nuevo array el triple sus valores.
+     *  d) Calcula el resultado de multiplicar todos los valores del nuevo array.
+     */
+
+    // Selecciona la lista a modificar
+    const step = document.querySelectorAll('.step li');
+
+    // a. Crea el array de números
+    let numeros = [1, 1.4, 3, 4.2, 5];
+
+    // Muestro el array
+    function muestraNumeros (arr) {
+      return `<br> => numeros = Array(${arr.length}) [${arr}]`;
+    }
+    step[0].innerHTML += muestraNumeros(numeros);
+
+    // b. Comprueba si todos son enteros positivos
+    numeros.every((n) => typeof n == 'number' && n > 0 && n % 1 == 0) ?
+      step[1].innerHTML += '<br>=> Todos los números son enteros y positivos.'
+      : step[1].innerHTML += '<br>=> Todos los números no son enteros y positivos.';
+
+    // c. Nuevo array con valores triplicados
+    let triple = numeros.map(n => n % 1 == 0? n * 3 : (n * 3).toFixed(2));
+    step[2].innerHTML += muestraNumeros(triple);
+
+    // d. Multiplica todos los valores del nuevo array
+    let multi = triple.reduce((i, n) => i * n);
+    step[3].innerHTML += `<br>=>La suma de los valores triplicados es: ${multi.toFixed(2)}.`;
+
+  </script>
+</body>
+</html>
