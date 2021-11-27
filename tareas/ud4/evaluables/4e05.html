@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    li {
+      margin: 1em 0;
+    }
+  </style>
+  <title>4e05</title>
+</head>
+<body>
+  <ol start="5">
+    <li>Crear objeto Vehículo. (CE4b, CE4e, CE4f, CE4g, CE4h, CE4i)</li>
+    <ol class="step" type="a">
+      <li>Crear constructor con las propiedades: marca, modelo, color y año fabricación.</li>
+      <li>Instanciar dos objetos.</li>
+      <li>Mostrar por pantalla una propiedad con notación por puntos. Objeto 1 - marca.</li>
+      <li>Mostrar por pantalla una propiedad con notación por corchetes. Objeto 2 - color.</li>
+      <li>Crear el método mostrarDatos.</li>
+      <li>Crear un método acelerar(velocidad). Mostrará por pantalla que el coche ha acelerado
+        a la velocidad pasada.</li>
+      <li>Crear un método con función interna arrancar, es decir, en la función constructora.
+        Mostrará por pantalla que el coche de marca _, modelo_, de color_ ha arrancado.</li>
+      <li>Asignar una nueva propiedad cilindrada.</li>
+      <li>Asignar un nuevo método frenar. Mostrará por pantalla que el coche de marca_, modelo_,
+        color_ ha parado.</li>
+      <li>Muestra todas las propiedades de Objeto1 utilizando: for...in , Object.getOwnPropertyNames(),
+        Object.keys().</li>
+      <li>Modifica los descriptores de las propiedades para que no se muestren los métodos ni la
+        propiedad marca al usar for...in  y Object.keys. Muestra de nuevo las propiedades del Objeto1.</li>
+    </ol>
+  </ol>
+  <script>
+    /**
+     * 5) Crear objeto Vehículo. (CE4b, CE4e, CE4f, CE4g, CE4h, CE4i)
+     *  a) Crear constructor con las propiedades: marca, modelo, color y año fabricación.
+     *  b) Instanciar dos objetos.
+     *  c) Mostrar por pantalla una propiedad con notación por puntos. Objeto 1 - marca.
+     *  d) Mostrar por pantalla una propiedad con notación por corchetes. Objeto 2 - color.
+     *  e) Crear el método mostrarDatos.
+     *  f) Crear un método acelerar(velocidad). Mostrará por pantalla que el coche ha acelerado
+     *      a la velocidad pasada.
+     *  g) Crear un método con función interna arrancar, es decir, en la función constructora.
+     *      Mostrará por pantalla que el coche de marca _, modelo_, de color_ ha arrancado.
+     *  h) Asignar una nueva propiedad cilindrada.
+     *  i) Asignar un nuevo método frenar. Mostrará por pantalla que el coche de marca_,
+     *      modelo_, color_ ha parado.
+     *  j) Muestra todas las propiedades de Objeto1 utilizando: for...in , Object.getOwnPropertyNames(),
+     *      Object.keys().
+     *  k) Modifica los descriptores de las propiedades para que no se muestren los métodos ni
+     *      la propiedad marca al usar for...in  y Object.keys. Muestra de nuevo las propiedades del Objeto1.
+     */
+
+     // Selecciona los li que quiero modificar
+    const step = document.querySelectorAll('.step li');
+
+    // Crea constructor vehiculo
+    function Vehiculo (marca, modelo, color, anyo_fabricacion) {
+      this.marca = marca;
+      this.modelo = modelo;
+      this.color = color;
+      this.anyo_fabricacion =anyo_fabricacion;
+      this.arrancar = function() {
+        return `El ${this.marca} ${this.modelo} ha arrancado.`
+      }
+    }
+
+    // b. Genera dos instancias
+    let v1 = new Vehiculo('Peugeot', '207', 'rojo', '2008');
+    let v2 = new Vehiculo('Ford', 'Focus', 'Azul', '2006');
+
+    // c. Notación por puntos
+    step[2].innerHTML += `<br>=> Vehículo1.marca: ${v1.marca}`;
+
+    // d. Notación por corchetes
+    step[3].innerHTML += `<br>=> Vehículo2[color]: ${v2['color']}`;
+
+    // e. Define el método mostrarDatos
+    Vehiculo.prototype.mostrarDatos = function() {
+      return `Vehiculo = {marca: '${this.marca}', modelo: '${this.modelo}', color:  '${this.color}', anyo_fabricacion: '${this.anyo_fabricacion}'}`;
+    }
+    step[4].innerHTML += `<br>=> ${v1.mostrarDatos()}`;
+
+    // f. Define método acelerar
+    Vehiculo.prototype.acelerar = function(vel) {
+      return `El ${this.marca} ${this.modelo} circula a ${vel}Km/h.`;
+    }
+
+    step[5].innerHTML += `<br>=> ${v2.acelerar(75)}`;
+
+    // g. Define función arrancar en el cuerpo del constructor
+    step[6].innerHTML += `<br>=> ${v1.arrancar()}`;
+
+    // h. Agrega la propiedad cilindrada.
+    Vehiculo.prototype.cilindrada;
+    v2.cilindrada = '1400';
+    step[7].innerHTML += `<br>=> La cilindrada del ${v2.marca} ${v2.modelo} es de  ${v2.cilindrada}cc.`;
+
+    // i. Define método frenar
+    Vehiculo.prototype.frenar = function() {
+      return `El ${this.marca} ${this.modelo} se ha detenido.`
+    }
+    step[8].innerHTML += `<br>=> ${v2.frenar()}`;
+
+    // j. Recorrer las propiedades
+
+    step[9].innerHTML +=`<br>=> Propiedades de "v1" (for..in. Con métodos):`;
+    for (const p in v1) {
+        step[9].innerHTML += `<br>- ${v1[p]}`;
+    }
+
+    step[10].innerHTML +=`<br><br>=> Propiedades de "v2" (getOwnPropertyNames. Sin métodos):`;
+    Object.getOwnPropertyNames(v2).forEach(function(n) {
+      typeof v2[n] != 'function' ? step[10].innerHTML += `<br>- ${v2[n]}` : null;
+    });
+
+    step[9].innerHTML +=`<br><br>=>Propiedades de "v2" (keys. Con métodos):`;
+    Object.keys(v2).forEach(function(n) {
+      step[9].innerHTML += `<br>- ${v2[n]}`;
+    })
+
+  </script>
+</body>
+</html>
