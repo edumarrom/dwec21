@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .visible {
+      visibility: visible;
+    }
+
+    .invisible {
+      visibility: hidden;
+    }
+
+    div {
+      position: relative;
+      left: 75px;
+      padding-top: 4px;
+      width: 520px;
+      height: 240px;
+      background: black;
+      color: whitesmoke;
+      font-family: monospace;
+    }
+
+    span {
+      font-size: large;
+    }
+  </style>
+  <title>4e04</title>
+</head>
+<body>
+  <ol start="4">
+    <li>Usando métodos de arrays de orden superior (apartado b): (CE4b, CE4c,CE4d,  CE4i)</li>
+    <ol type="a">
+      <li>Pedir al usuario que introduzca una frase.</li>
+      <li>Quitar todos los números de dicha frase.</li>
+      <li>Mostrar el texto generando el efecto TypeWritter
+        (el texto se muestra simulando que se está tecleando en ese momento).</li>
+      <li>Incorporar el efecto cursor intermitente.</li>
+    </ol>
+  </ol>
+  <div>
+    <span id="target">~$ </span><span id="cursor">█</span>
+  </div>
+  <script>
+    /**
+     * Usando métodos de arrays de orden superior (apartado b): (CE4b, CE4c,CE4d,  CE4i)
+     *  a) Pedir al usuario que introduzca una frase.
+     *  b) Quitar todos los números de dicha frase.
+     *  c) Mostrar el texto generando el efecto TypeWritter (el texto se muestra simulando
+     *      que se está tecleando en ese momento).
+     *  d) Incorporar el efecto cursor intermitente.
+     */
+
+    // a. Solicita frase al usuario
+    let miFrase = prompt('Introduce una frase', 'El vel5oz murciélago hi4ndú comía fe2liz card67illo y kiw3i.');
+
+    // b. Quita todos los números
+    miFrase = miFrase.replace(/\d/g, '');
+    console.log(miFrase);
+
+    // c. Efecto TypeWritter
+    let i = 0;
+    vel = 75;
+    function escribir() {
+      if (i < miFrase.length) {
+        document.getElementById('target').innerHTML += miFrase.charAt(i);
+        i++;
+        setTimeout(escribir, vel);
+      }
+    }
+
+    // d. Efecto cursor terminal
+    let cursor = setInterval(parpadeo, 500);
+
+    let visible = true;
+    function parpadeo() {
+      visible ? (document.getElementById('cursor').className = 'visible', visible = false)
+      : (document.getElementById('cursor').className = 'invisible', visible = true);
+    }
+
+    escribir();
+
+  </script>
+</body>
+</html>
