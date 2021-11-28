@@ -5,6 +5,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    #ventana {
+      position: relative;
+      left: 75px;
+      width: 506px;
+      height: 368px;
+      border-radius: 1px;
+      background-color: #c0c0c0/* #d784d7 */;
+      box-shadow: inset 1px 1px 1px #fff,
+      inset -1px -1px 1px #000;
+      }
+
+    #titulo {
+      top: 3px;
+      display: block;
+      position: relative;
+      margin: 4px 3px;
+      color: #fff;
+      font-family: sans-serif;
+      background-image: linear-gradient(to right, #008c , #0846e7);
+    }
+
+    #consola {
+      position: relative;
+      top: 3px;
+      left: 4px;
+      padding: 8px 0 0 4px;
+      width: 494px;
+      height: 330px;
+      background-color: black;
+      border-radius: 0;
+      color: whitesmoke;
+      font-family: monospace;
+      box-shadow: inset 1px 1px 1px rgb(124, 124, 124),
+      inset -1px -1px 0 rgb(31, 31, 31);
+    }
+
+    li {
+      margin: 1em 0;
+    }
+
     .visible {
       visibility: visible;
     }
@@ -12,42 +52,33 @@
     .invisible {
       visibility: hidden;
     }
-
-    div {
-      position: relative;
-      left: 75px;
-      padding-top: 4px;
-      width: 520px;
-      height: 240px;
-      background: black;
-      color: whitesmoke;
-      font-family: monospace;
-    }
-
-    li {
-      margin: 1em 0;
-    }
-
-    span {
-      font-size: large;
-    }
   </style>
   <title>4e04</title>
 </head>
 <body>
-  <ol start="4">
-    <li>Usando métodos de arrays de orden superior (apartado b): (CE4b, CE4c,CE4d,  CE4i)</li>
-    <ol type="a">
-      <li>Pedir al usuario que introduzca una frase.</li>
-      <li>Quitar todos los números de dicha frase.</li>
-      <li>Mostrar el texto generando el efecto TypeWritter
-        (el texto se muestra simulando que se está tecleando en ese momento).</li>
-      <li>Incorporar el efecto cursor intermitente.</li>
-    </ol>
-  </ol>
   <div>
-    <span id="target">~$ </span><span id="cursor">█</span>
+    <button><a href="/index.html">Volver</a></button>
+    <ol start="4">
+      <li>Usando métodos de arrays de orden superior (apartado b): (CE4b, CE4c,CE4d,  CE4i)</li>
+      <ol type="a">
+        <li>Pedir al usuario que introduzca una frase.</li>
+        <li>Quitar todos los números de dicha frase.</li>
+        <li>Mostrar el texto generando el efecto TypeWritter
+          (el texto se muestra simulando que se está tecleando en ese momento).</li>
+        <li>Incorporar el efecto cursor intermitente.</li>
+      </ol>
+    </ol>
   </div>
+
+  <div id="ventana">
+    <span id="titulo">C:\COMMAND.COM</span>
+    <div id="consola">
+      <span id="target">C:\&gt; </span><span id="cursor">█</span>
+    </div>
+  </div>
+
+
+
   <script>
     /**
      * Usando métodos de arrays de orden superior (apartado b): (CE4b, CE4c,CE4d,  CE4i)
