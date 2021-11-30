@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    p {
+      font-family: monospace;
+      font-size: 1.25em;
+    }
+  </style>
   <title>4a01</title>
 </head>
 <body>
+  <p id="miArray"></p>
+  <p id="media"></p>
+  <button><a href="/index.html">Volver</a></button>
   <script>
   /* Crea un programa que le pida al usuario que introduzca una serie de
   números y calcule la media aritmética.
@@ -14,16 +23,18 @@
       e invocándola con un argumento que utilice el operador SPREAD */
 
   let miArray = [1,2,3,4];
+  document.getElementById('miArray').innerHTML = `> miArray => Array(${miArray.length}) [${miArray}]`;
 
   function media(...nums) {
     let resultado = 0;
     for (let n of nums) {
       resultado += n;
     }
-    return document.write(resultado / nums.length);
+    return resultado / nums.length;
   }
 
-  media(3, 5, 6, ...miArray, 8)
+  let res = media(3, 5, 6, ...miArray, 8);
+  document.getElementById('media').innerHTML = `> media(3, 5, 6, ...miArray, 8) => ${res}`;
   </script>
 </body>
 </html>

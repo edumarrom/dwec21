@@ -4,9 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    p {
+      font-family: monospace;
+      font-size: 1.25em;
+    }
+  </style>
   <title>4a04</title>
 </head>
 <body>
+  <p id="original"></p>
+  <p id="menor"></p>
+  <p id="mayor"></p>
+  <p id="resultado"></p>
+  <button><a href="/index.html">Volver</a></button>
+
   <script>
     /**
      * Realiza los cambios necesarios en el ejercicio anterior para que la última
@@ -35,21 +47,25 @@
       arr = arr.listaNumeros();
       console.log('array original: ' + arr);
 
-      // let mayor = arr[0];
-      // let menor = arr[0];
-      let res = [arr[0], arr[0]];
+      let resultado = [...arr];
+      let mayor = arr[0];
+      let menor = arr[0];
 
-      arr.forEach(elem => elem > res[0] ? res[0] = elem : null);
-      arr.forEach(elem => elem < res[1] ? res[1] = elem : null);
+      arr.forEach(elem => elem > mayor ? mayor = elem : null);
+      arr.forEach(elem => elem < menor ? menor = elem : null);
 
-      // return [mayor, menor];
-      return res;
-      // +eficiente / -legible
+      resultado.splice(resultado.indexOf(mayor), 1);
+      resultado.splice(resultado.indexOf(menor), 1);
+
+      console.log('[mayor, menor]: ' + [mayor, menor]);
+      return [arr, mayor, menor, resultado];
     }
 
-    let algo = new Array();
-
-    console.log(algo.menorMayor());
+    let res = [].menorMayor();
+    document.getElementById('original').innerHTML = `> numeros => Array(${res[0].length}) [${res[0]}]`;
+    document.getElementById('menor').innerHTML = `> elMenor => ${res[1]}`;
+    document.getElementById('mayor').innerHTML = `> elMayor => ${res[2]}`;
+    document.getElementById('resultado').innerHTML = `> resultado => Array(${res[3].length}) [${res[3]}]`;
   </script>
 </body>
 </html>

@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    p {
+      font-family: monospace;
+      font-size: 1.25em;
+    }
+  </style>
   <title>4a02</title>
 </head>
 <body>
+  <p id="original"></p>
+  <p id="menor"></p>
+  <p id="mayor"></p>
+  <p id="resultado"></p>
+  <button><a href="/index.html">Volver</a></button>
   <script>
     /* Crear un vector de 10 elementos con valores aleatorios comprendidos
     entre 0 y 1000. Buscar el menor y el mayor. Generar otro vector a partir
@@ -24,9 +35,8 @@
     function listaNumeros(n = 10, max = 1000) {
       let resultado = new Array(n);
 
-      /* TODO: Usar método push */
       for (let i = 0; i < resultado.length; i++) {
-        resultado[i] = numAleatorio(max);
+        resultado[i] = numAleatorio(max); // TODO: Usar método push en el próximo ejercicio
       }
 
       return resultado;
@@ -46,14 +56,18 @@
       const elMenor = menor(resultado);
       const elMayor = mayor(resultado);
 
-      resultado.splice(numeros.indexOf(elMenor), 1);
-      resultado.splice(numeros.indexOf(elMayor), 1);
+      resultado.splice(resultado.indexOf(elMenor), 1);
+      resultado.splice(resultado.indexOf(elMayor), 1);
 
       console.log('array original: ' + numeros);
-      return resultado;
+      return [numeros, elMenor, elMayor, resultado];
     }
 
-    console.log(principal());
+    let res = principal();
+    document.getElementById('original').innerHTML = `> numeros => Array(${res[0].length}) [${res[0]}]`;
+    document.getElementById('menor').innerHTML = `> elMenor => ${res[1]}`;
+    document.getElementById('mayor').innerHTML = `> elMayor => ${res[2]}`;
+    document.getElementById('resultado').innerHTML = `> resultado => Array(${res[3].length}) [${res[3]}]`;
   </script>
 </body>
 </html>
