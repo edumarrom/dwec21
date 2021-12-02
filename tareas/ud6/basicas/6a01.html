@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  <title>6a01</title>
+</head>
+<body>
+  <script>
+    /* Crear una array multidimensional que recoja los nombres de 5 alumnos
+    y las notas obtenidas en tres módulos.  Dicha información será introducida
+    por el usuario y una vez finalizada la recogida de datos se mostrará el
+    contenido del array en forma de tabla generándola con métodos del DOM. */
+
+    // Creo el array bidimensional
+    const alumnos = [
+      ['Antonio', '5', '7', '0'],
+      ['Bartolo', '6', '2', '8'],
+      ['Carmen', '4', '4', '3'],
+      ['Diana', '2', '2', '6'],
+      ['Elena', '8', '7', '0'],
+    ];
+
+    // Creo los elementos HTML
+    const cabeceras = ['Nombre', 'DWES', 'DWEC', 'DIW'];
+    const tabla = document.createElement('table');
+    const cabeceraTabla = document.createElement('thead');
+    const cuerpoTabla = document.createElement('tbody');
+    const filaCabecera = document.createElement('tr');
+
+    // Creamos celdas de cabecera e insertamos en fila cabecera
+    for (const cabecera of cabeceras) {
+      let celdaCabecera = document.createElement('th');
+      celdaCabecera.textContent = cabecera;
+      filaCabecera.appendChild(celdaCabecera);
+    }
+
+    // Insertamos fila cabecera en la cabecera de la tabla
+    cabeceraTabla.appendChild(filaCabecera);
+
+    // Creamos filas de cuerpo
+    for (const alumno of alumnos) {
+      let filaCuerpo = document.createElement('tr');
+
+      // Por cada fila, creamos celdas de cuerpo e insertamos en dicha fila
+      for (const al of alumno) {
+        let celdaCuerpo = document.createElement('td');
+        celdaCuerpo.textContent = al;
+        filaCuerpo.appendChild(celdaCuerpo);
+      }
+      cuerpoTabla.appendChild(filaCuerpo);
+    }
+
+    // Insertamos la cabecera y el cuerpo en la tabla
+    tabla.appendChild(cabeceraTabla);
+    tabla.appendChild(cuerpoTabla);
+
+    /* // Inserto atributo border a la tabla
+    tabla.setAttribute('border', 2); */
+
+    // Insertamos la tabla en el body
+    document.body.appendChild(tabla);
+  </script>
+</body>
+</html>
