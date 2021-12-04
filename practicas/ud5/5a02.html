@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5a02</title>
+  <style>
+    #loading {
+      width: 100vh;
+      height: 100vh;
+      display: flex;
+      position: fixed;
+      align-items: center;
+      justify-content: center;
+      font-size: x-large;
+
+    }
+
+    #container {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <p>Cargando...</p>
+  </div>
+  <div>
+    <div id="container">
+      <div><img src="https://picsum.photos/640/480" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/481" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/482" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/483" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/484" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/485" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/486" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/487" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/488" alt="random image"></div>
+      <div><img src="https://picsum.photos/640/489" alt="random image"></div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.querySelector('#container');
+    const loading = document.querySelector('#loading');
+
+    window.addEventListener('load', function() {
+      loading.style.display = 'none';
+      container.style.display = 'initial';
+    });
+  </script>
+
+</body>
+</html>

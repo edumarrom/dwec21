@@ -5,9 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #miParrafo {
+      width:max-content;
+      padding: 1em;
+      position: fixed;
+      background: gold;
+      border: 1px solid black;
+      box-shadow: 5px 5px 8px 5px black;
+      visibility: hidden;
+    }
+  </style>
 </head>
 <body>
-  <div id="algo"></div>
+  <div id="miParrafo">Soy un parrafo.</div>
   <script>
     /**
      * Crea una web que en cada movimiento del ratón sobre ella (evento del ratón: onmousemove)
@@ -21,9 +32,19 @@
 
     */
 
-    miEnlace.addEventListener('click',alertar,false);
-    let posX = screenX;
-
+    let parrafo = document.getElementById('miParrafo');
+    document.addEventListener('mousemove', function(e) {
+      parrafo.innerHTML =
+        `<p>clientX: ${e.clientX}</p>
+        <p>clientY: ${e.clientY}</p>
+        <p>screenX: ${e.screenX}</p>
+        <p>screenY: ${e.screenY}</p>`;
+      parrafo.style.visibility = 'visible';
+      parrafo.style.left = e.clientX+'px';
+      parrafo.style.top = e.clientY+'px';
+      parrafo.style['border-radius'] = e.clientX+'px';
+      parrafo.style['box-shadow'] = e.clientX+'px ' + e.clientX+'px ' + e.clientX+'px 0 black';
+    }, false);
   </script>
 </body>
 </html>
