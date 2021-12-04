@@ -116,3 +116,4 @@ body {
 .menu-btn.open .menu-btn_burger::after {
   transform: rotate(-45deg) translate(17.5px, 17.5px);
 }
+
