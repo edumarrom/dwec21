@@ -5,8 +5,45 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario</title>
+  <style>
+    input {
+      margin-bottom: 16px;
+    }
+
+    .error {
+      border: 2px solid red;
+    }
+  </style>
+  <script defer src="validar.js"></script>
 </head>
 <body>
-
+  <div id="container">
+    <form action="" method="get" id="formulario" name="formulario">
+      <label for="nombre"/>
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre"
+        required pattern="^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]{2,44}"
+        title="El nombre no puede contener números, debe empezar por una
+        letra y no puede superar los 50 caracteres.">
+      <br>
+      <label for="telefono"/>
+      <input type="tel" name="telefono" id="telefono" placeholder="Teléfono"
+        required pattern="\d{9}" title="El teléfono debe contener 9 cifras.">
+      <br>
+      <label for="fechaNac"/>
+      <input type="date" name="fechaNac" id="fechaNac" required min="1900-01-01">
+      <br>
+      <label for="sexo"/>
+      <input type="radio" name="sexo" value="H">Hombre
+      <input type="radio" name="sexo" value="M">Mujer
+      <br>
+      <input type="checkbox" name="mayor" id="mayor" required
+        title="Debe ser mayor de 18 años para enviar este formulario.">
+        Soy mayor de 18 años.
+      <br>
+      <button type="submit" id="enviar">Enviar</button>
+      <button type="reset" id="reset" name="reset">Borrar</button>
+      <div id="mensajeError"></div>
+    </form>
+  </div>
 </body>
 </html>
