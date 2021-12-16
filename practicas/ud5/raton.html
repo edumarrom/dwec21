@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>raton</title>
+</head>
+<body>
+  <div>
+    <p id="miParrafo">Aqui hay algo</p>
+  </div>
+
+  <script>
+    const parrafo = document.getElementById('miParrafo');
+    const izq = 'Click izquierdo';
+    const rueda = 'Click rueda';
+    const der = 'Click derecho';
+    const back = 'Click atras';
+    const forward = 'Click adelante';
+    const wheel = 'Moviste la rueda';
+
+    document.addEventListener('mouseup', function(e) {
+      switch(e.button) {
+        case 0:
+          parrafo.innerText = izq;
+          break;
+        case 1:
+          parrafo.innerText = rueda;
+          break;
+        case 2:
+          parrafo.innerText = der;
+          break;
+        case 3:
+          parrafo.innerText = back;
+          break;
+        case 4:
+          parrafo.innerText = forward;
+      }
+    });
+
+    document.addEventListener('wheel', function(e) {
+      parrafo.innerText = wheel;
+    });
+  </script>
+</body>
+</html>
