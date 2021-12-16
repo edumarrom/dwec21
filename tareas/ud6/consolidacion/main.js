@@ -30,6 +30,8 @@ const user = new Usuario('', '', '', INVITADO);
  * Al pulsar el boton login, pasamos a modo "registrado"
  */
 const contenedorUno = document.querySelector('#contenedorUno');
+const contenedorDos = document.querySelector('#contenedorDos');
+const infoInvitado = contenedorDos.textContent;
 
 const loginBtn = document.querySelector('#login');
 
@@ -38,9 +40,11 @@ loginBtn.addEventListener('click', login);
 function login() {
   if (user.rango == INVITADO) {
     user.cambiarRango(REGISTRADO);
+    contenedorDos.textContent = '';
     loginBtn.textContent = 'LogOut';
   } else {
     user.cambiarRango(INVITADO);
+    contenedorDos.textContent = infoInvitado;
     loginBtn.textContent = 'LogIn';
   }
 }
@@ -58,12 +62,36 @@ function sudo() {
     user.cambiarRango(ADMIN);
   } else {
     user.cambiarRango(REGISTRADO);
-
   }
 }
 
-document.addEventListener('load', guardado)
+/**
+ * Creo el formulario
+ */
+
+const formulario = document.createElement('form');
+formulario.setAttribute('action', '#');
+formulario.setAttribute('method', 'GET');
+
+const usuLabel = document.createElement('label');
+usuLabel.setAttribute('for', 'usuario');
+
+const usuario = document.createElement('input');
+usuario.setAttribute('id', 'usuario');
+usuario.setAttribute('name', 'usuario');
+usuario.setAttribute('placeholder', 'Usuario');
+usuario.setAttribute('required', 'true');
+usuario.setAttribute('pattern', '^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]{2,44}');
+usuario.setAttribute('maxlength', '45');
+
+document.addEventListener('load', dibujarPagina)
 /*
 TODO: Cuando se hace la carga de la web, se comprueba la cookie del rango,
 para mostrar un contenido distinto.
  */
+
+function dibujarPagina() {
+  if (user.rango = REGISTRADO) {
+
+  }
+}
