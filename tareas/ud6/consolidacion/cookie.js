@@ -1,4 +1,4 @@
-function setCookie(cname, cvalue, exdays=1) {
+export function setCookie(cname, cvalue, exdays=1) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
@@ -6,7 +6,7 @@ function setCookie(cname, cvalue, exdays=1) {
   }
 
 
-  function getCookie(cname) {
+  export function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -22,7 +22,7 @@ function setCookie(cname, cvalue, exdays=1) {
     return "";
   }
 
-  function checkCookie() {
+  export function checkCookie() {
     var user = getCookie("username");
     if (user != "") {
       alert("Welcome again " + user);
@@ -34,8 +34,6 @@ function setCookie(cname, cvalue, exdays=1) {
     }
   }
 
-  function deleteCookie(cnombre) {
+  export function deleteCookie(cnombre) {
     setCookie(cnombre, '', 0);
 }
-
-

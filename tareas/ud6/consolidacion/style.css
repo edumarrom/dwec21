@@ -1,0 +1,17 @@
+button {
+    margin: 0 1vh;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario input {
+    max-width: fit-content;
+    margin: 1vh;
+}
+
+.hidden {
+    display: none;
+}
