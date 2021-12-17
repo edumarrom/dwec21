@@ -53,7 +53,7 @@ const inputs = [
     placeholder: 'DNI',
     required: true,
     pattern: '^[0-9][0-9]{7}[A-Za-z]{1}',
-  }
+  },
 ];
 
 /*
@@ -192,8 +192,10 @@ function sudo() {
  * Guarda los valores del input en cookies.
  */
 function guardar() {
-  cookie.setCookie(formulario.usuario.name, formulario.usuario.value);
-  cookie.setCookie(formulario.email.name, formulario.email.value);
+  if (user.rango >= REGISTRADO) {
+    cookie.setCookie(formulario.usuario.name, formulario.usuario.value);
+    cookie.setCookie(formulario.email.name, formulario.email.value);
+  }
 
   if (user.rango == ADMIN) {
     cookie.setCookie(formulario.dni.name, formulario.dni.value);
