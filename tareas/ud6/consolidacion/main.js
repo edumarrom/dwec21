@@ -1,5 +1,12 @@
 import * as cookie from './cookie.js';
 
+/**
+ * Actividad de consolidación de conceptos del 1er trimestre
+ * DWEC 21/22 - IES. DOÑANA
+ * @author  Eduardo Martínez Romero
+ * @license GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+ */
+
 /*
 |--------------------------------------------------------------------------
 | Constantes, selectores, datos
@@ -23,7 +30,7 @@ const infoRegistrado = 'Hola de nuevo, usuario';
 const infoAdmin = 'Bienvenido de nuevo, admin';
 
 /**
- * Datos para generar inputs del formulario
+ * Datos para generar inputs del formulario.
  */
 const inputs = [
   {
@@ -56,12 +63,14 @@ const inputs = [
 |
 */
 
+// Los docstrings de JS permiten el uso de Markdown. Tam
+
 /**
- * Constructor de usuarios
- * @param {String} nombre
- * @param {String} email
- * @param {String} dni
- * @param {Number} rango
+ * ## Constructor de usuarios.
+ * - @param {String} nombre Nombre del usuario.
+ * - @param {String} email  Email del usuario.
+ * - @param {String} dni    DNI del usuario.
+ * - @param {Number} rango  Rango del usuario.
  */
 function Usuario (nombre, email, dni, rango) {
   iniciarCookies();
@@ -77,7 +86,7 @@ function Usuario (nombre, email, dni, rango) {
   }
 }
 
-/* Genera una instancia de usuario */
+/* Genera una instancia de usuario. */
 const user = new Usuario('', '', '', INVITADO);
 cookie.setCookie('rango', user.rango);
 
@@ -89,20 +98,20 @@ cookie.setCookie('rango', user.rango);
 */
 
 /**
- * Crea el botón de guardado
+ * Crea el botón de guardado.
  */
  const guardarBtn = document.createElement('button');
  guardarBtn.setAttribute('disabled', true);
  guardarBtn.textContent = 'Guardar Datos';
 
  /**
- * Crea el botón del acceso Admin
+ * Crea el botón del acceso Admin.
  */
 const adminBtn = document.createElement('button');
 adminBtn.innerHTML = 'Modo Administrador';
 
 /**
- * Crea el formulario
+ * Crea el formulario.
  */
  const formulario = document.createElement('form');
  formulario.setAttribute('action', '#');
@@ -132,6 +141,9 @@ adminBtn.innerHTML = 'Modo Administrador';
 |
 */
 
+/**
+ * Inicializa las cookies.
+ */
 function iniciarCookies() {
   cookie.setCookie('usuario', '');
   cookie.setCookie('email', '');
@@ -140,7 +152,7 @@ function iniciarCookies() {
 }
 
 /**
- * Inicia o finaliza la sesión actual
+ * Inicia o finaliza la sesión actual.
  */
 function login() {
   if (user.rango <= INVITADO) {
@@ -162,18 +174,22 @@ function login() {
 }
 
 /**
- * Accede como administrador del sitio
+ * Accede como administrador del sitio.
  */
 function sudo() {
   user.cambiarRango(ADMIN);
   contenedorUno.removeChild(adminBtn);
   contenedorDos.innerHTML = infoAdmin;
   contenedorDos.appendChild(formulario);
+
+  // Activación del campo DNI
   formulario.dni.classList.remove('hidden');
+  dni.addEventListener('blur', validaDni);
+  guardarBtn.disabled = true;
 }
 
 /**
- * Guarda los valores del input en cookies
+ * Guarda los valores del input en cookies.
  */
 function guardar() {
   if (user.rango == REGISTRADO) {
@@ -186,34 +202,63 @@ function guardar() {
   }
 }
 
+/**
+ * Activa el botón de guardado si se cumplen las condiciones.
+ */
 function activaGuardar() {
-  if(formulario.usuario.checkValidity() && formulario.email.checkValidity()) {
-    guardarBtn.disabled = false;
-    return true;
+  if (user.rango == REGISTRADO) {
+    if(formulario.usuario.checkValidity() && formulario.email.checkValidity()) {
+      guardarBtn.disabled = false;
+      return true;
+    }
+    guardarBtn.disabled = true;
+    return false;
+  } else if (user.rango == ADMIN) {
+    if(formulario.usuario.checkValidity() && formulario.email.checkValidity()
+      && formulario.dni.checkValidity()) {
+      guardarBtn.disabled = false;
+      return true;
+    }
+    guardarBtn.disabled = true;
+    return false;
   }
-  return false;
+
 }
 
 /*
- VALIDACIONES
+|--------------------------------------------------------------------------
+| Validaciones
+|--------------------------------------------------------------------------
+|
 */
 
+/* Elementos del formulario */
+const usuario = formulario.usuario;
+const email = formulario.email;
+const dni = formulario.dni;
+
 /**
- * Elemento que mostrará el error
+ * Elemento que mostrará los posibles mensajes de error.
  */
 const mensajeError = document.createElement('div');
-mensajeError.classList.add('entrada-error-mensaje');
 
 // Mensajes de error
 const missing = (e) =>`El ${e.name} no puede estar vacío.`;
 const missmatch = (e) =>`Debe introducir un ${e.name} válido.`;
 
+/**
+ * Inserta el elemento que muestra el error en el DOM.
+ * @param {Object} e El objeto disparador del evento.
+ */
 function error(e) {
   mensajeError.textContent = e.validationMessage;
   e.classList.add('entrada-error');
   e.insertAdjacentElement('afterend', mensajeError);
 }
 
+/**
+ * Remueve los errores de todos los elementos del formulario.
+ */
 function borrarError() {
   const formulario = document.forms[0];
   for (const e of formulario.elements){
@@ -222,6 +267,11 @@ function borrarError() {
   }
 }
 
+/**
+ * Reliza una validación completa de todos los campos del formulario.
+ * @param   {Object} evento El objeto disparador del evento.
+ * @returns {boolean}       El resultado de la validación.
+ */
 function validar(evento) {
   borrarError();
   if (user.rango == REGISTRADO) {
@@ -239,61 +289,71 @@ function validar(evento) {
     return false;
   }
 }
-
+/**
+ * Valida el campo Usuario
+ * @returns {boolean} El resultado de la validación.
+ */
 function validaUsuario() {
   borrarError();
   const e = document.querySelector('#usuario');
   if(!e.checkValidity()) {
     if(e.validity.valueMissing) {
-        e.setCustomValidity(missing(e));
+      e.setCustomValidity(missing(e));
     }
     if(e.validity.patternMismatch) {
-        e.setCustomValidity(missmatch(e));
+      e.setCustomValidity(missmatch(e));
     }
     e.reportValidity();
     error(e);
+    e.focus();
     return false;
   }
   console.log('Usuario correcto');
-  e.classList.remove('entrada-error');
   return true;
 }
 
+/**
+ * Valida el campo Email
+ * @returns {boolean} El resultado de la validación.
+ */
 function validaEmail() {
   borrarError();
   const e = document.querySelector('#email');
   if(!e.checkValidity()) {
     if(e.validity.valueMissing) {
-        e.setCustomValidity(missing(e));
-    }
-    if(e.validity.patternMismatch) {
-        e.setCustomValidity(missmatch(e));
+      e.setCustomValidity(missing(e));
+    } else if(e.validity.patternMismatch) {
+      e.setCustomValidity(missmatch(e));
     }
     e.reportValidity();
     error(e);
+    e.focus()
     return false;
   }
   console.log('Email correcto');
-  e.classList.remove('entrada-error');
   return true;
 }
 
+/**
+ * Valida el campo DNI
+ * @returns {boolean} El resultado de la validación.
+ */
 function validaDni() {
   borrarError();
   const e = document.querySelector('#dni');
   if(!e.checkValidity()) {
     if(e.validity.valueMissing) {
-        e.setCustomValidity(missing(e));
+      e.setCustomValidity(missing(e));
     }
     if(e.validity.patternMismatch) {
-        e.setCustomValidity(missmatch(e));
+      e.setCustomValidity(missmatch(e));
     }
     e.reportValidity();
     error(e);
+    e.focus()
     return false;
   }
   console.log('DNI correcto');
-  e.classList.remove('entrada-error');
   return true;
 }
 
@@ -305,15 +365,26 @@ function validaDni() {
 */
 
 /**
- * Inicio y cierre de sesión
+ * Inicio y cierre de sesión.
  */
 loginBtn.addEventListener('click', login);
 
 /**
- * Acceso administrador
+ * Acceso administrador.
  */
 adminBtn.addEventListener('click', sudo);
 
-formulario.addEventListener('change', activaGuardar);
+/**
+ * Activación el botón de guardado.
+ */
+formulario.addEventListener('keyup', activaGuardar);
 
+/* Validaciones */
+usuario.addEventListener('blur', validaUsuario);
+email.addEventListener('blur', validaEmail);
+// El evento para la validación del DNI se encuentra en la función sudo.
+
+/**
+ * Validación y guardado de los datos.
+ */
 guardarBtn.addEventListener('click', validar);
