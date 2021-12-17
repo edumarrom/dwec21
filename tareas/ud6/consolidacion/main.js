@@ -63,7 +63,7 @@ const inputs = [
 |
 */
 
-// Los docstrings de JS permiten el uso de Markdown. Tam
+// Los docstrings de JS permiten el uso de Markdown.
 
 /**
  * ## Constructor de usuarios.
