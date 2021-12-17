@@ -192,10 +192,8 @@ function sudo() {
  * Guarda los valores del input en cookies.
  */
 function guardar() {
-  if (user.rango == REGISTRADO) {
-    cookie.setCookie(formulario.usuario.name, formulario.usuario.value);
-    cookie.setCookie(formulario.email.name, formulario.email.value);
-  }
+  cookie.setCookie(formulario.usuario.name, formulario.usuario.value);
+  cookie.setCookie(formulario.email.name, formulario.email.value);
 
   if (user.rango == ADMIN) {
     cookie.setCookie(formulario.dni.name, formulario.dni.value);
