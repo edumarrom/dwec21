@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      table,
+      th,
+      td {
+          border: 1px solid black;
+          border-collapse: collapse;
+      }
+
+      th,
+      td {
+          padding: 5px;
+      }
+  </style>
+  <title>7a02-mejorada</title>
+</head>
+
+<body>
+  <div>
+    <h1>Flipped Classroom:<br>Recepción de información: XML</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+  </div>
+  <div id="texto">
+    <h2>Colección de CD's</h2>
+    <button id="cargarCatalogo">Mostrar catálogo</button>
+  </div>
+  <!-- table incoming -->
+  <script>
+    document.getElementById('cargarCatalogo').addEventListener('click', cargarCatalogo);
+
+    function cargarCatalogo() {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200) {
+                cargarXML(this);
+            }
+        };
+
+        xhr.open('GET', 'catalogo.xml', true);
+        xhr.send();
+    }
+
+    function cargarXML(xml) {
+        const docXML = xml.responseXML;
+
+        // Consigo la colección de CD's
+        const discos = Array.from(docXML.getElementsByTagName('CD')); // TODO: Esto debe ser un array (Array.from)
+
+        // Creo los elementos HTML
+        const cabeceras = ['Artista', 'Título'];
+        const tabla = document.createElement('table');
+        const cabeceraTabla = document.createElement('thead');
+        const cuerpoTabla = document.createElement('tbody');
+        const filaCabecera = document.createElement('tr');
+
+        // Creamos celdas de cabecera e insertamos en fila cabecera
+        for (const cabecera of cabeceras) {
+        let celdaCabecera = document.createElement('th');
+        celdaCabecera.textContent = cabecera;
+        filaCabecera.appendChild(celdaCabecera);
+        }
+
+        // Insertamos fila cabecera en la cabecera de la tabla
+        cabeceraTabla.appendChild(filaCabecera);
+
+        // Por cada disco en el catálogo, añadimos una fila a la tabla
+        discos.forEach((disco) => {
+            const artista = disco.getElementsByTagName('ARTIST');
+            const titulo = disco.getElementsByTagName('TITLE');
+
+            //
+            anyadirFila(artista, titulo);
+        });
+
+        // Insertamos la cabecera y el cuerpo en la tabla
+        tabla.appendChild(cabeceraTabla);
+        tabla.appendChild(cuerpoTabla);
+
+        // Insertamos la tabla en el body
+        document.body.appendChild(tabla);
+
+        // Añade una fila al catálogo
+        function anyadirFila(artista, titulo) {
+
+            // Creamos una fila
+            let filaCuerpo = document.createElement('tr');
+
+            // Creamos las celdas artista y título
+            let celdaArtista = document.createElement('td');
+            let celdaTitulo = document.createElement('td');
+
+            // Las rellenamos con los parámetros artista y titulo
+            celdaArtista.textContent = artista[0].textContent;
+            celdaTitulo.textContent = titulo[0].textContent;
+
+            // Las insertamos dentro de la fila
+            filaCuerpo.appendChild(celdaArtista);
+            filaCuerpo.appendChild(celdaTitulo);
+
+            // Insertamos la fila en el cuerpo
+            cuerpoTabla.appendChild(filaCuerpo);
+        }
+
+        /* // Cosita antigua
+        for (let i = 0; i < discos.length; i++) {
+            tabla += '<tr><td>';
+            tabla += discos[i].getElementsByTagName('ARTIST')[0].textContent;
+            tabla += '</td><td>';
+            tabla += discos[i].getElementsByTagName('TITLE')[0].textContent;
+            tabla += '</td></tr>';
+        }
+
+        document.getElementById('catalogo').innerHTML = tabla; */
+    }
+  </script>
+</body>
+</html>
