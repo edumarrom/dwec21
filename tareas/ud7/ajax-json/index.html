@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.addEventListener('load', inicio);
+
+    function inicio() {
+      document.getElementById('mostrar').addEventListener('click', mostrar);
+    }
+
+    function mostrar() {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          const objeto = JSON.parse(this.responseText);
+
+          // Mostramos una cadena con los valores recibidos en xhr.
+          document.getElementById('parrafo').innerHTML = objeto.nombre +
+            ' nació en ' + objeto.nacimiento + ' en ' + objeto.pais + '.';
+
+          // Si queremos convertir un objeto JS en cadena.
+          const candela = JSON.stringify(objeto);
+          document.getElementById('parrafo').innerHTML += '<br>El objeto' + objeto +
+            'en modo cadena es: ' + candela;
+        }
+      }
+
+      xhr.open('GET', 'datos.json', true); // 'objeto.php'
+      xhr.send();
+    }
+  </script>
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>Flipped Classroom:<br>Recepción de información: JSON</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+  </div>
+
+  <div>
+    <button id="mostrar">Mostrar</button>
+    <p id="parrafo"></p>
+  </div>
+</body>
+</html>

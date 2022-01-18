@@ -22,7 +22,11 @@
 
 <body>
   <div>
-    <h1>Flipped Classroom:<br>Recepción de información: XML</h1>
+    <h1>
+      Flipped Classroom con vitaminas:<br>Recepción de información XML
+      <br>
+      y manipulación de elementos del DOM.
+    </h1>
     <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
     <h3>Eduardo Martínez Romero</h3>
   </div>
@@ -30,7 +34,9 @@
     <h2>Colección de CD's</h2>
     <button id="cargarCatalogo">Mostrar catálogo</button>
   </div>
-  <!-- table incoming -->
+
+  <div id="tabla"></div>
+
   <script>
     document.getElementById('cargarCatalogo').addEventListener('click', cargarCatalogo);
 
@@ -49,53 +55,63 @@
     function cargarXML(xml) {
         const docXML = xml.responseXML;
 
-        // Consigo la colección de CD's
-        const discos = Array.from(docXML.getElementsByTagName('CD')); // TODO: Esto debe ser un array (Array.from)
+        // Consigue la colección de CD's.
+        const discos = Array.from(docXML.getElementsByTagName('CD'));
 
-        // Creo los elementos HTML
+        // Crea los elementos HTML.
         const cabeceras = ['Artista', 'Título'];
         const tabla = document.createElement('table');
         const cabeceraTabla = document.createElement('thead');
         const cuerpoTabla = document.createElement('tbody');
         const filaCabecera = document.createElement('tr');
 
-        // Creamos celdas de cabecera e insertamos en fila cabecera
+        // Crea las celdas de cabecera e inserta en la fila de cabecera.
         for (const cabecera of cabeceras) {
         let celdaCabecera = document.createElement('th');
         celdaCabecera.textContent = cabecera;
         filaCabecera.appendChild(celdaCabecera);
         }
 
-        // Insertamos fila cabecera en la cabecera de la tabla
+        // Inserta la fila de cabecera en la cabecera de la tabla.
         cabeceraTabla.appendChild(filaCabecera);
 
-        // Por cada disco en el catálogo, añadimos una fila a la tabla
+        // Por cada disco en el catálogo, añadimos una fila a la tabla.
         discos.forEach((disco) => {
-            const artista = disco.getElementsByTagName('ARTIST');
-            const titulo = disco.getElementsByTagName('TITLE');
 
-            //
-            anyadirFila(artista, titulo);
+          // Obtiene todas las etiquetas <ARTIST> y <TITLE> dentro de <CD>.
+          const artista = disco.getElementsByTagName('ARTIST');
+          const titulo = disco.getElementsByTagName('TITLE');
+
+          // Inserta la fila en el cuerpo.
+          cuerpoTabla.appendChild(getFila(artista, titulo));
         });
 
-        // Insertamos la cabecera y el cuerpo en la tabla
+        // Inserta la cabecera y el cuerpo en la tabla.
         tabla.appendChild(cabeceraTabla);
         tabla.appendChild(cuerpoTabla);
 
-        // Insertamos la tabla en el body
-        document.body.appendChild(tabla);
+        // Inserta la tabla en el div #tabla existente en el DOM.
+        document.querySelector('#tabla').innerHTML = '';  // Limpio el <div>.HTMLElement
+        document.querySelector('#tabla').appendChild(tabla);
 
-        // Añade una fila al catálogo
-        function anyadirFila(artista, titulo) {
+        /******************************************************************
+         * Genera una fila de tabla con el artista y el título del álbum.
+         *
+         * @param   String  artista El artista del álbum.
+         * @param   String  titulo  El artista del álbum.
+         *
+         * @return  HTMLTrElement   La fila resultante.
+         ******************************************************************/
+        function getFila(artista, titulo) {
 
-            // Creamos una fila
+            // Genera la fila.
             let filaCuerpo = document.createElement('tr');
 
-            // Creamos las celdas artista y título
+            // Genera las celdas artista y título.
             let celdaArtista = document.createElement('td');
             let celdaTitulo = document.createElement('td');
 
-            // Las rellenamos con los parámetros artista y titulo
+            // Las rellena con los parámetros artista y titulo
             celdaArtista.textContent = artista[0].textContent;
             celdaTitulo.textContent = titulo[0].textContent;
 
@@ -103,11 +119,14 @@
             filaCuerpo.appendChild(celdaArtista);
             filaCuerpo.appendChild(celdaTitulo);
 
-            // Insertamos la fila en el cuerpo
-            cuerpoTabla.appendChild(filaCuerpo);
+            // Devuelve la fila
+            return filaCuerpo;
         }
 
-        /* // Cosita antigua
+        /* Bucle básico para recorrer fichero XML y rellenar una tabla existente
+        en el DOM. En nuestro caso hemos creado desde JS un elemento <table> que
+        posteriormente hemos colgado en el <body> de nuestra página.
+
         for (let i = 0; i < discos.length; i++) {
             tabla += '<tr><td>';
             tabla += discos[i].getElementsByTagName('ARTIST')[0].textContent;
