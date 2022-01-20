@@ -51,14 +51,14 @@ function cargarXML(xml) {
   tabla.appendChild(cuerpoTabla);
 
   // Inserta la tabla en el div #tabla existente en el DOM.
-  document.querySelector('#tabla').innerHTML = '';  // Limpio el <div>.HTMLElement
+  document.querySelector('#tabla').innerHTML = '';  // Limpio el <div>
   document.querySelector('#tabla').appendChild(tabla);
 
   /******************************************************************
    * Genera una fila de tabla con el artista y el título del álbum.
    *
    * @param   String  artista El artista del álbum.
-   * @param   String  titulo  El artista del álbum.
+   * @param   String  titulo  El título del álbum.
    *
    * @return  HTMLTrElement   La fila resultante.
    ******************************************************************/
