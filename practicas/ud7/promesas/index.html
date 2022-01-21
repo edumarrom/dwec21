@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi primera promesa xd</title>
+</head>
+
+<body>
+  <button id="boton">Lanzar Promesa</button>
+</body>
+<script>
+  document.getElementById('boton').addEventListener('click', lanzarPromesa);
+
+  function lanzarPromesa() {
+    const promesa = new Promise((resolver, rechazar) => {
+      const n1 = prompt('Introduce variable 1');
+      const n2 = prompt('Introduce variable 2');
+
+      (n1 == n2) ? resolver('Son iguales') : rechazar(Error('Algo raro ha pasado'));
+    });
+
+    promesa.then((resultado) => console.log(resultado))
+      .catch((error) => console.log(error.message));
+  }
+
+  function lanzarPromesa2(){
+    const promesa = new Promise((resolver) => {
+      let n = 0;
+      const intervalo = setInterval(() => {
+        n++;
+        if (n === 10) {
+          resolver('Han pasado 10 segundos');
+          clearInterval(intervalo);
+        }
+      }, 1000);
+    });
+
+    promesa.then((resultado) => console.log(resultado));
+  }
+</script>
+
+</html>
