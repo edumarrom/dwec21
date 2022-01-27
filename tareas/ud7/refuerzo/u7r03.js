@@ -6,10 +6,10 @@ function mostrar() {
 
   function resolver() {
     if (this.readyState == 4 && this.status == 200) {
-      let aux = JSON.parse(this.responseText);
-      const empleados = aux.employees;
-
-      const tabla = generarTabla(empleados);
+      let articulo = JSON.parse(this.responseText);
+      const articulos = [articulo];
+      console.log(articulos);
+      const tabla = generarTabla(articulos);
 
       // Insertamos el resultado
       const resultado = document.querySelector('#resultado')
@@ -51,6 +51,6 @@ function mostrar() {
     return tabla;
   }
 
-  xhr.open('GET', 'ficheros/servidor.php', true); // 'objeto.php'
+  xhr.open('GET', 'ficheros/respuestaJsonGet.php', true); // 'objeto.php'
   xhr.send();
 }

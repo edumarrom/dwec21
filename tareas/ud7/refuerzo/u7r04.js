@@ -1,15 +1,18 @@
 document.querySelector('#generar-tabla').addEventListener('click', mostrar);
 
+const art = document.querySelector('#art').value;
+
 function mostrar() {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = resolver;
 
   function resolver() {
     if (this.readyState == 4 && this.status == 200) {
-      let aux = JSON.parse(this.responseText);
-      const empleados = aux.employees;
-
-      const tabla = generarTabla(empleados);
+      console.log(this.responseText)
+      let articulo = JSON.parse(this.responseText);
+      const articulos = [articulo];
+      console.log(articulos);
+      const tabla = generarTabla(articulos);
 
       // Insertamos el resultado
       const resultado = document.querySelector('#resultado')
@@ -17,6 +20,11 @@ function mostrar() {
       resultado.appendChild(tabla);
     }
   }
+
+  xhr.open('POST', 'ficheros/respuestaJsonPost.php', true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  console.log(`$art = ${art}`);
+  xhr.send(`art=${art}`);
 
   function generarTabla(datos) {
     const tabla = document.createElement('table');
@@ -50,7 +58,4 @@ function mostrar() {
 
     return tabla;
   }
-
-  xhr.open('GET', 'ficheros/servidor.php', true); // 'objeto.php'
-  xhr.send();
 }
