@@ -1,7 +1,7 @@
 <?php
 //header('Content-type: application/json; charset=utf-8');
-/* error_reporting(0);
-$employees = [
+error_reporting(0);
+/*$employees = [
 	["firstName" => "John", "lastName" => "Doe"],
 	["firstName" => "Anna", "lastName" => "Smith"],
 	["firstName" => "Peter", "lastName" => "Jones"],
