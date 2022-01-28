@@ -5,8 +5,6 @@
 	$data = json_decode(file_get_contents('php://input'));
 	$art=$data->art;
 
-
-
 	class Articulo {
 		public $id;
 		public $nombre;
@@ -17,7 +15,7 @@
 
 	$articulo = new Articulo();
 
-	if($art > 0.5){
+	if($art <= 1){
 		$articulo->id = 1;
 		$articulo->nombre = "Nintendo DS";
 		$articulo->categoria = "Videojuego";

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>7r03</title>
+</head>
+
+<body>
+  <div>
+    <h1>Actividad 7R03 - Refuerzo UD7</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+    <hr>
+  </div>
+  <div>
+    <p>
+      Realizar una web que al pulsar un botón se realice una petición asíncrona GET al archivo
+      respuestaJsonGet.php y muestre en el documento la información del JSON que se envía
+      como respuesta.
+    </p>
+    <button id="solicitar-datos">Solicitar datos</button>
+    <hr>
+  </div>
+  <div id="datos">
+  </div>
+
+  <script>
+    document.querySelector('#solicitar-datos').addEventListener('click', mostrar);
+
+    function mostrar() {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = respuesta;
+      xhr.open('GET', 'ficheros/respuestaJsonGet.php', true);
+      xhr.send();
+
+      function respuesta() {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+
+
+          // Console log's
+          console.log(response);
+
+          const datos = generarTabla([response]);
+
+          // Insertamos el resultados
+          const rDatos = document.querySelector('#datos');
+          rDatos.innerHTML = '';
+          rDatos.appendChild(datos);
+        }
+        }
+
+        function generarTabla(datos) {
+          const tabla = document.createElement('table');
+
+          // Generamos cabecera
+          const cabeceras = Object.keys(datos[0]);
+          const cabeceraTabla = document.createElement('thead');
+          const filaCabecera = document.createElement('tr');
+          cabeceras.forEach(cabecera => {
+            const celdaCabecera = document.createElement('th');
+            celdaCabecera.textContent = cabecera;
+            filaCabecera.appendChild(celdaCabecera);
+          });
+          cabeceraTabla.appendChild(filaCabecera);
+          tabla.appendChild(cabeceraTabla);
+
+          // Generamos cuerpo
+          const cuerpoTabla = document.createElement('tbody');
+          datos.forEach(dato => {
+            const campos = Object.values(dato);
+            const filaCuerpo = document.createElement('tr');
+            campos.forEach(campo => {
+              const celdaCuerpo = document.createElement('td');
+              const re = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+              if (String(campo).match('http')) {
+                if (String(campo).match(re)) {
+                  const img = document.createElement('img');
+                  img.setAttribute('src', campo);
+                  celdaCuerpo.appendChild(img);
+                } else {
+                  const anchor = document.createElement('a');
+                  anchor.setAttribute('href', campo);
+                  anchor.textContent = campo;
+                  celdaCuerpo.appendChild(anchor);
+                }
+
+              } else {
+                celdaCuerpo.textContent = campo;
+              }
+              filaCuerpo.appendChild(celdaCuerpo);
+            });
+            cuerpoTabla.appendChild(filaCuerpo);
+          });
+          tabla.appendChild(cuerpoTabla);
+          return tabla;
+        }
+      }
+  </script>
+</body>
+
+</html>

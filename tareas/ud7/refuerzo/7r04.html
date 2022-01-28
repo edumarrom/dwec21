@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>u7r04
+  </title>
+</head>
+<body>
+  <div>
+    <h1>Actividades de refuerzo UD7</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+    <hr>
+  </div>
+  <div>
+    <p>
+      Realizar una web que al pulsar un botón se realice una petición asíncrona POST al
+      archivo respuestaJsonPost.php y muestre en el documento la información del JSON que se
+      envía como respuesta.
+    </p>
+  </div>
+  <div>
+    <label for="articulo"></label>
+    <input type="text" name="articulo" id="articulo" placeholder="Introduce id articulo">
+    <button id="enviar-consulta">Enviar consulta</button>
+    <hr>
+  </div>
+  <div id="datos">
+
+  </div>
+
+  <script>
+    document.querySelector('#enviar-consulta').addEventListener('click', mostrar);
+
+    function mostrar() {
+      const art = document.querySelector('#articulo').value;
+      const consulta = {'art' : art};
+      console.log(consulta);
+
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('POST', 'ficheros/respuestaJsonPost.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = respuesta;
+      xhr.send(JSON.stringify(consulta));
+
+      function respuesta() {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          console.log(response);
+
+          const datos = generarTabla([response]);
+
+          // Insertamos el resultado
+          const rDatos = document.querySelector('#datos');
+          rDatos.innerHTML = '';
+          rDatos.appendChild(datos);
+        }
+      }
+
+      /* function consulta() {
+        const obj = {};
+        const art = document.querySelector('#articulo').value;
+        obj['art'] = art;
+        return obj;
+      } */
+
+      function generarTabla(datos) {
+        const tabla = document.createElement('table');
+
+        // Generamos cabecera
+        const cabeceras = Object.keys(datos[0]);
+        const cabeceraTabla = document.createElement('thead');
+        const filaCabecera = document.createElement('tr');
+        cabeceras.forEach(cabecera => {
+          const celdaCabecera = document.createElement('th');
+          celdaCabecera.textContent = cabecera;
+          filaCabecera.appendChild(celdaCabecera);
+        });
+        cabeceraTabla.appendChild(filaCabecera);
+        tabla.appendChild(cabeceraTabla);
+
+        // Generamos cuerpo
+        const cuerpoTabla = document.createElement('tbody');
+        datos.forEach(dato => {
+          const campos = Object.values(dato);
+          const filaCuerpo = document.createElement('tr');
+          campos.forEach(campo => {
+            const celdaCuerpo = document.createElement('td');
+            const re = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+            if (String(campo).match('http')) {
+              if (String(campo).match(re)) {
+                const img = document.createElement('img');
+                img.setAttribute('src', campo);
+                celdaCuerpo.appendChild(img);
+              } else {
+                const anchor = document.createElement('a');
+                anchor.setAttribute('href', campo);
+                anchor.textContent = campo;
+                celdaCuerpo.appendChild(anchor);
+              }
+
+            } else {
+              celdaCuerpo.textContent = campo;
+            }
+            filaCuerpo.appendChild(celdaCuerpo);
+          });
+          cuerpoTabla.appendChild(filaCuerpo);
+        });
+        tabla.appendChild(cuerpoTabla);
+        return tabla;
+      }
+    }
+  </script>
+</body>
+</html>
