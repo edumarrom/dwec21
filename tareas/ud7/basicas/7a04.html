@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>7a04</title>
+</head>
+
+<body>
+  <div>
+    <h1>Actividad 7A04 - Petición GET sobre https://reqres.in/</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+    <hr>
+  </div>
+  <div>
+    <p>
+      Crea una página que tenga un botón “Solicitar usuarios” que, al ser pulsado,
+      solicite unos datos de manera asíncrona a https://reqres.in/api/users y muestre
+      la información por pantalla. Debe mostrar el número total de páginas, la
+      página actual y una tabla que muestra id, nombre, apellido e email de los
+      usuarios enviados.
+    </p>
+  </div>
+
+  <div>
+    <button id="solicitar-usuarios">solicitar usuarios</button>
+  </div>
+
+  <div id="cabecera"></div>
+
+  <div id="datos"></div>
+
+  <div id="support"></div>
+
+  <script>
+    document.querySelector('#solicitar-usuarios').addEventListener('click', mostrar);
+
+    function mostrar() {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = resolver;
+
+      function resolver() {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          const header = obtenerCabecera(response);
+          const data = response.data;
+          const cabecera = generarTabla([header]);
+          const datos = generarTabla(data);
+          const supp = generarTabla([response['support']]);
+          const numPagina = document.createElement('p');
+          numPagina.textContent = `Página ${header['page']} de ${header['total_pages']}`;
+
+          // Console log's
+          console.log(header);
+          console.log(data);
+
+          // Insertamos el resultado
+          const rCabecera = document.querySelector('#cabecera');
+          rCabecera.innerHTML = '';
+          rCabecera.appendChild(cabecera);
+
+          const rDatos = document.querySelector('#datos');
+          rDatos.innerHTML = '';
+          rDatos.appendChild(numPagina);
+          rDatos.appendChild(datos);
+
+          const rSupp = document.querySelector('#support');
+          rSupp.innerHTML = '';
+          rSupp.appendChild(supp);
+        }
+      }
+
+      function obtenerCabecera(datos) {
+        const obj = {};
+        for (const prop in datos) {
+          if (typeof datos[prop] === 'number' || typeof datos[prop] === 'number') {
+            obj[prop] = datos[prop];
+          }
+        }
+        return obj;
+      }
+
+      function generarTabla(datos) {
+        const tabla = document.createElement('table');
+
+        // Generamos cabecera
+        const cabeceras = Object.keys(datos[0]);
+        const cabeceraTabla = document.createElement('thead');
+        const filaCabecera = document.createElement('tr');
+        cabeceras.forEach(cabecera => {
+          const celdaCabecera = document.createElement('th');
+          celdaCabecera.textContent = cabecera;
+          filaCabecera.appendChild(celdaCabecera);
+        });
+        cabeceraTabla.appendChild(filaCabecera);
+        tabla.appendChild(cabeceraTabla);
+
+        // Generamos cuerpo
+        const cuerpoTabla = document.createElement('tbody');
+        datos.forEach(dato => {
+          const campos = Object.values(dato);
+          const filaCuerpo = document.createElement('tr');
+          campos.forEach(campo => {
+            const celdaCuerpo = document.createElement('td');
+            const re = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+            if (String(campo).match('http')) {
+              if (String(campo).match(re)) {
+                const img = document.createElement('img');
+                img.setAttribute('src', campo);
+                celdaCuerpo.appendChild(img);
+              } else {
+                const anchor = document.createElement('a');
+                anchor.setAttribute('href', campo);
+                anchor.textContent = campo;
+                celdaCuerpo.appendChild(anchor);
+              }
+
+            } else {
+              celdaCuerpo.textContent = campo;
+            }
+            filaCuerpo.appendChild(celdaCuerpo);
+          });
+          cuerpoTabla.appendChild(filaCuerpo);
+        });
+        tabla.appendChild(cuerpoTabla);
+        return tabla;
+      }
+
+      xhr.open('GET', 'https://reqres.in/api/users', true);
+      xhr.send();
+    }
+  </script>
+</body>
+
+</html>
