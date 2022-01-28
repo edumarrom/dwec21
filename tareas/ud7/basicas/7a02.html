@@ -4,35 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-      table,
-      th,
-      td {
-          border: 1px solid black;
-          border-collapse: collapse;
-      }
-
-      th,
-      td {
-          padding: 5px;
-      }
-  </style>
-  <title>7a02-mejorada</title>
+  <link rel="stylesheet" href="style.css">
+  <title>7a02</title>
 </head>
 
 <body>
   <div>
-    <h1>
-      Flipped Classroom con vitaminas:<br>Recepción de información XML
-      <br>
-      y manipulación de elementos del DOM.
-    </h1>
+    <h1>Actividad 7A02 - Flipped Classroom:<br>Recepción de información XML</h1>
     <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
     <h3>Eduardo Martínez Romero</h3>
+    <hr>
   </div>
   <div id="texto">
     <h2>Colección de CD's</h2>
+    <p>
+      Crear una aplicación que muestre la información del archivo XML "catalogo.xml".
+      Para ello, se creará una tabla mediante JavaScript, donde se muestre en
+      cada fila, el artista y el título de cada CD.
+    </p>
     <button id="cargarCatalogo">Mostrar catálogo</button>
+    <hr>
   </div>
 
   <div id="tabla"></div>
@@ -48,7 +39,7 @@
             }
         };
 
-        xhr.open('GET', 'catalogo.xml', true);
+        xhr.open('GET', 'recursos/catalogo.xml', true);
         xhr.send();
     }
 

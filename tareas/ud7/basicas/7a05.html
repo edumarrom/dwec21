@@ -1,174 +1,139 @@
 <!DOCTYPE html>
-<!-- Actividad 7A05 - Petición POST sobre https://reqres.in/
-  - Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
-
-  - Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users
-    para crear un nuevo usuario con los datos proporcionados en los campos de texto
-    mediante un JSON.
-
-  - Este JSON debe contener la clave “first_name” y la clave “last_name”.
-
-  - Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su código
-  de respuesta y los datos del nuevo usuario (los mismos que se mostraban en la
-  tabla del ejercicio previo) si se reciben. -->
 <html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    div {
-      margin: 1vh;
-    }
-  </style>
-  <title>Movida movida!!!</title>
+  <link rel="stylesheet" href="style.css">
+  <title>7a05</title>
 </head>
 
 <body>
   <div>
-    <h1>REST API's: POST</h1>
+    <h1>Actividad 7A05 - Petición POST sobre https://reqres.in/</h1>
     <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
     <h3>Eduardo Martínez Romero</h3>
-  </div>
-  <div>
-    Actividad 7A05 - Petición POST sobre https://reqres.in/
-    <ul>
-      <li>
-        Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.
-      </li>
-      <li>
-        Al pulsar el botón, se debe realizar una llamada asíncrona a https://reqres.in/api/users
-        para crear un nuevo usuario con los datos proporcionados en los campos de
-        texto mediante un JSON.
-      </li>
-      <li>
-        Este JSON debe contener la clave “first_name” y la clave “last_name”.
-      </li>
-      <li>
-        Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo
-        su código de respuesta y los datos del nuevo usuario (los mismos que se
-        mostraban en la tabla del ejercicio previo) si se reciben.
-      </li>
-    </ul>
     <hr>
   </div>
   <div>
-    <h2>Crear un usuario</h2>
-    <form action="" method="post">
-      <div>
-        <label for="nombre"></label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
-      </div>
-      <div>
-        <label for="cargo"></label>
-        <input type="text" id="cargo" name="cargo" placeholder="Cargo">
-      </div>
-      <div>
-        <button type="submit">Crear</button>
-      </div>
-    </form>
+    <ul>
+      <li>Crea una página que tenga dos campos de texto y un botón “Añadir usuario”.</li>
+      <li>
+        Al pulsar el botón, se debe realizar una llamada asíncrona a
+        https://reqres.in/api/users para crear un nuevo usuario con los datos
+        proporcionados en los campos de texto mediante un JSON.
+      </li>
+      <li>Este JSON debe contener la clave “first_name” y la clave “last_name”.</li>
+      <li>
+        Debe mostrarse la respuesta del servidor cuando se reciba, incluyendo su
+        código de respuesta y los datos del nuevo usuario (los mismos que se
+        mostraban en la tabla del ejercicio previo) si se reciben.
+      </li>
+    </ul>
   </div>
 
+  <div>
+    <div>
+      <label for="nombre"></label>
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <div>
+      <label for="apellido"></label>
+      <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos">
+    </div>
+    <div>
+      <button id="crear-usuario">Crear usuario</button>
+    </div>
+    <hr>
+  </div>
+
+  <div id="cabecera"></div>
+
+  <div id="datos"></div>
+
   <script>
-    document.getElementById('cargarCatalogo').addEventListener('click', cargarCatalogo);
+    document.querySelector('#crear-usuario').addEventListener('click', crearUsuario);
 
-    function cargarCatalogo() {
+    function crearUsuario() {
       const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          cargarXML(this);
+
+      function respuesta() {
+        if (this.readyState == 4 && this.status == 201) {
+          const response = JSON.parse(this.responseText);
+          console.log(response);
+
+          const datos = generarTabla([response]);
+
+          // Insertamos el resultado
+          document.getElementById('cabecera').innerHTML = `El código de respuesta de la petición es: <code>${this.status}</code>`;
+          const rDatos = document.querySelector('#datos');
+          rDatos.innerHTML = '';
+          rDatos.appendChild(datos);
         }
-      };
-
-      xhr.open('GET', 'catalogo.xml', true);
-      xhr.send();
-    }
-
-    function cargarXML(xml) {
-      const docXML = xml.responseXML;
-
-      // Consigue la colección de CD's.
-      const discos = Array.from(docXML.getElementsByTagName('CD'));
-
-      // Crea los elementos HTML.
-      const cabeceras = ['Artista', 'Título'];
-      const tabla = document.createElement('table');
-      const cabeceraTabla = document.createElement('thead');
-      const cuerpoTabla = document.createElement('tbody');
-      const filaCabecera = document.createElement('tr');
-
-      // Crea las celdas de cabecera e inserta en la fila de cabecera.
-      for (const cabecera of cabeceras) {
-        let celdaCabecera = document.createElement('th');
-        celdaCabecera.textContent = cabecera;
-        filaCabecera.appendChild(celdaCabecera);
       }
 
-      // Inserta la fila de cabecera en la cabecera de la tabla.
-      cabeceraTabla.appendChild(filaCabecera);
-
-      // Por cada disco en el catálogo, añadimos una fila a la tabla.
-      discos.forEach((disco) => {
-
-        // Obtiene todas las etiquetas <ARTIST> y <TITLE> dentro de <CD>.
-        const artista = disco.getElementsByTagName('ARTIST');
-        const titulo = disco.getElementsByTagName('TITLE');
-
-        // Inserta la fila en el cuerpo.
-        cuerpoTabla.appendChild(getFila(artista, titulo));
-      });
-
-      // Inserta la cabecera y el cuerpo en la tabla.
-      tabla.appendChild(cabeceraTabla);
-      tabla.appendChild(cuerpoTabla);
-
-      // Inserta la tabla en el div #tabla existente en el DOM.
-      document.querySelector('#tabla').innerHTML = '';  // Limpio el <div>
-      document.querySelector('#tabla').appendChild(tabla);
-
-      /******************************************************************
-       * Genera una fila de tabla con el artista y el título del álbum.
-       *
-       * @param   String  artista El artista del álbum.
-       * @param   String  titulo  El título del álbum.
-       *
-       * @return  HTMLTrElement   La fila resultante.
-       ******************************************************************/
-      function getFila(artista, titulo) {
-
-        // Genera la fila.
-        let filaCuerpo = document.createElement('tr');
-
-        // Genera las celdas artista y título.
-        let celdaArtista = document.createElement('td');
-        let celdaTitulo = document.createElement('td');
-
-        // Las rellena con los parámetros artista y titulo
-        celdaArtista.textContent = artista[0].textContent;
-        celdaTitulo.textContent = titulo[0].textContent;
-
-        // Las insertamos dentro de la fila
-        filaCuerpo.appendChild(celdaArtista);
-        filaCuerpo.appendChild(celdaTitulo);
-
-        // Devuelve la fila
-        return filaCuerpo;
+      function consulta() {
+        const obj = {};
+        const nombre = document.querySelector('#nombre').value;
+        const apellidos = document.querySelector('#apellidos').value;
+        obj['first_name'] = nombre;
+        obj['last_name'] = apellidos;
+        return obj;
       }
-    }
-    /* Bucle básico para recorrer fichero XML y rellenar una tabla existente
-    en el DOM. En nuestro caso hemos creado desde JS un elemento <table> que
-    posteriormente hemos colgado en el <body> de nuestra página.
 
-    for (let i = 0; i < discos.length; i++) {
-        tabla += '<tr><td>';
-        tabla += discos[i].getElementsByTagName('ARTIST')[0].textContent;
-        tabla += '</td><td>';
-        tabla += discos[i].getElementsByTagName('TITLE')[0].textContent;
-        tabla += '</td></tr>';
-    }
+      function generarTabla(datos) {
+        const tabla = document.createElement('table');
 
-    document.getElementById('catalogo').innerHTML = tabla; */
+        // Generamos cabecera
+        const cabeceras = Object.keys(datos[0]);
+        const cabeceraTabla = document.createElement('thead');
+        const filaCabecera = document.createElement('tr');
+        cabeceras.forEach(cabecera => {
+          const celdaCabecera = document.createElement('th');
+          celdaCabecera.textContent = cabecera;
+          filaCabecera.appendChild(celdaCabecera);
+        });
+        cabeceraTabla.appendChild(filaCabecera);
+        tabla.appendChild(cabeceraTabla);
+
+        // Generamos cuerpo
+        const cuerpoTabla = document.createElement('tbody');
+        datos.forEach(dato => {
+          const campos = Object.values(dato);
+          const filaCuerpo = document.createElement('tr');
+          campos.forEach(campo => {
+            const celdaCuerpo = document.createElement('td');
+            const re = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+            if (String(campo).match('http')) {
+              if (String(campo).match(re)) {
+                const img = document.createElement('img');
+                img.setAttribute('src', campo);
+                celdaCuerpo.appendChild(img);
+              } else {
+                const anchor = document.createElement('a');
+                anchor.setAttribute('href', campo);
+                anchor.textContent = campo;
+                celdaCuerpo.appendChild(anchor);
+              }
+
+            } else {
+              celdaCuerpo.textContent = campo;
+            }
+            filaCuerpo.appendChild(celdaCuerpo);
+          });
+          cuerpoTabla.appendChild(filaCuerpo);
+        });
+        tabla.appendChild(cuerpoTabla);
+        return tabla;
+      }
+
+      xhr.open('POST', 'https://reqres.in/api/users', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = respuesta;
+      xhr.send(JSON.stringify(consulta()));
+    }
   </script>
 </body>
+
 </html>

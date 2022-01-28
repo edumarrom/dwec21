@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <script>
     window.addEventListener('load', inicio);
 
@@ -13,7 +15,7 @@
 
     function mostrar() {
       const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const objeto = JSON.parse(this.responseText);
 
@@ -28,22 +30,35 @@
         }
       }
 
-      xhr.open('GET', 'objeto.php', true); // 'objeto.php'
+      xhr.open('GET', 'recursos/datos.json', true); // 'objeto.php'
       xhr.send();
     }
   </script>
   <title>7a03</title>
 </head>
+
 <body>
   <div>
-    <h1>Flipped Classroom:<br>Recepción de información: JSON</h1>
+    <h1>Actividad 7A03 - Flipped Classroom:<br>Recepción de información JSON</h1>
     <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
     <h3>Eduardo Martínez Romero</h3>
+    <hr>
   </div>
 
   <div>
-    <button id="mostrar">Mostrar</button>
+    <p>
+      Mostrar la info de un JSON al pulsar el botón "Mostrar", pero en lugar de
+      crear el JSON a partir de un fichero PHP, cargarlo directamente desde un
+      archivo datos.json que se encuentre en el mismo directorio
+    </p>
+  </div>
+  <div>
+    <button id="mostrar">Mostrar datos del JSON</button>
+    <hr>
+  </div>
+  <div>
     <p id="parrafo"></p>
   </div>
 </body>
+
 </html>
