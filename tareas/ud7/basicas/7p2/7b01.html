@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7b01</title>
+</head>
+
+<body>
+  <div>
+    <h1>Actividad 7B01 - Temporizador hecho con promesas</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+    <hr>
+  </div>
+
+  <div>
+    <p>
+      Crear una función que reciba un número de milisegundos y genere un
+      temporizador que escriba el texto “Tiempo concluido” cuando pasen dichos
+      milisegundos
+    </p>
+    <button id="boton">Iniciar temporizador</button>
+    <button><a href="index.html">Volver</a></button>
+    <hr>
+  </div>
+</body>
+<script>
+  document.getElementById('boton').addEventListener('click', temporizador);
+
+  function temporizador(){
+    const promesa = new Promise((resolver,rechazar) => {
+      const segs = prompt('Introduce segundos');
+      if(segs != 420) {
+        console.log('Tiempo iniciado');
+        setTimeout(() => {console.log('Tiempo concluido')}, segs * 1000);
+      } else {
+          rechazar(Error('El tiempo no va bien'));
+      }
+    });
+
+    promesa.then((resultado) => console.log(resultado))
+      .catch((error) => console.log(error.message));
+  }
+</script>
+
+</html>

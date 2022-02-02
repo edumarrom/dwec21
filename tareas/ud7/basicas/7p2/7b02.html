@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7B02</title>
+</head>
+<body>
+  <div>
+    <h1>Actividad 7B02 - 7A01 usando Fetch API</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+  </div>
+  <div id="texto">
+    Hola, ¿Qué tal?
+  </div>
+  <button id="cambiaContenido">Traducir al andaluz</button>
+
+  <script>
+    document.getElementById('cambiaContenido').addEventListener('click', cambiaContenido);
+
+    function cambiaContenido() {
+    fetch('ficheros/holamundo.txt')
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error(`Se ha producido un error con código ${response.status}`);
+      }
+    })
+    .then((data) => {
+      document.getElementById('texto').innerHTML = data;
+    })
+    .catch((err) => {
+      console.error('Error:', err.message);
+    });
+  }
+  </script>
+</body>
+</html>
