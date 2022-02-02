@@ -3,7 +3,7 @@
 
 	//recibo los datos y los decodifico con PHP
 	$data = json_decode(file_get_contents('php://input'));
-	$art=$data->art;
+	$art=$data->articulo;
 
 	class Articulo {
 		public $id;

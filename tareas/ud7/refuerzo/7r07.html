@@ -6,85 +6,61 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>7a04</title>
+  <title>7r07</title>
 </head>
 
 <body>
   <div>
-    <h1>Actividad 7A04 - Petición GET sobre https://reqres.in/</h1>
+    <h1>Actividad 7R07 - Refuerzo UD7</h1>
     <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
     <h3>Eduardo Martínez Romero</h3>
     <hr>
   </div>
   <div>
     <p>
-      Crea una página que tenga un botón “Solicitar usuarios” que, al ser pulsado,
-      solicite unos datos de manera asíncrona a https://reqres.in/api/users y muestre
-      la información por pantalla. Debe mostrar el número total de páginas, la
-      página actual y una tabla que muestra id, nombre, apellido e email de los
-      usuarios enviados.
+      Modifica el ejercicio 5 para que en vez del id del usuario, el campo de
+      texto represente la página de cuyos usuarios se quiere solicitar información.
+      Realiza la petición a https://reqres.in/api/users especificando la página
+      concreta con un query parameter y muestra los datos igual que se mostraban
+      en la actividad 7A04. Supón que el número de página proporcionado es siempre correcto
     </p>
   </div>
 
   <div>
-    <button id="solicitar-usuarios">solicitar usuarios</button>
+    <label for="user-id"></label>
+    <input type="number" name="user-id" id="user-id" placeholder="Introduce id de usuario">
+    <button id="enviar-consulta">Enviar consulta</button>
+    <button><a href="index.html">Volver</a></button>
     <hr>
   </div>
 
-  <div id="cabecera"></div>
-
   <div id="datos"></div>
 
-  <div id="support"></div>
-
   <script>
-    document.querySelector('#solicitar-usuarios').addEventListener('click', mostrar);
+    document.querySelector('#enviar-consulta').addEventListener('click', mostrar);
 
     function mostrar() {
+      const userId = document.querySelector('#user-id').value;
+
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = resolver;
-      xhr.open('GET', 'https://reqres.in/api/users', true);
+      xhr.open('GET', `https://reqres.in/api/users?page=${userId}`, true);
       xhr.send();
 
       function resolver() {
         if (this.readyState == 4 && this.status == 200) {
           const response = JSON.parse(this.responseText);
-          const header = obtenerCabecera(response);
           const data = response.data;
-          const cabecera = generarTabla([header]);
-          const datos = generarTabla(data);
-          const supp = generarTabla([response['support']]);
-          const numPagina = document.createElement('p');
-          numPagina.textContent = `Página ${header['page']} de ${header['total_pages']}`;
+          const resultado = generarTabla(data);
 
           // Console log's
-          console.log(header);
           console.log(data);
 
           // Insertamos el resultado
-          const rCabecera = document.querySelector('#cabecera');
-          rCabecera.innerHTML = '';
-          rCabecera.appendChild(cabecera);
-
           const rDatos = document.querySelector('#datos');
           rDatos.innerHTML = '';
-          rDatos.appendChild(numPagina);
-          rDatos.appendChild(datos);
-
-          const rSupp = document.querySelector('#support');
-          rSupp.innerHTML = '';
-          rSupp.appendChild(supp);
+          rDatos.appendChild(resultado);
         }
-      }
-
-      function obtenerCabecera(datos) {
-        const obj = {};
-        for (const prop in datos) {
-          if (typeof datos[prop] === 'number' || typeof datos[prop] === 'number') {
-            obj[prop] = datos[prop];
-          }
-        }
-        return obj;
       }
 
       function generarTabla(datos) {
