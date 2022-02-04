@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Sin favicon se produce un error 404 y pone de rojo todo el contenido -->
+  <link rel="stylesheet" href="style.css">
+  <title>7B4</title>
+</head>
+
+<body>
+  <div>
+    <h1>Actividad 7B04 - Refuerzo UD7</h1>
+    <h2>DWEC - IES Doñana - 2º DAW 21/22</h2>
+    <h3>Eduardo Martínez Romero</h3>
+    <hr>
+  </div>
+  <div>
+    <p>
+      Modifica el ejercicio anterior para que la aplicación actúe correctamente
+      si el id especificado no es correcto. En dicho caso no debe mostrar la
+      información del usuario sino un mensaje claramente distinguible (en color
+      rojo por ejemplo). Observa el comportamiento del servidor antes de
+      implementar la funcionalidad.
+    </p>
+    <button id="enviar-consulta">Enviar consulta</button>
+    <button><a href="index.html">Volver</a></button>
+    <hr>
+  </div>
+
+  <div id="datos"></div>
+
+  <script>
+    const boton = document.querySelector('#enviar-consulta');
+    const rDatos = document.querySelector('#datos');
+
+    rDatos.className = 'noerror';
+
+    const xhr = new XMLHttpRequest;
+
+    boton.addEventListener('click', () => {
+      peticion(`https://reqres.in/api/uffsers`);
+    });
+
+    function peticion(urlServidor) {
+      xhr.open('GET', urlServidor);
+      xhr.onreadystatechange = respuesta;
+      xhr.send();
+    };
+
+    function respuesta() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        const response = JSON.parse(xhr.responseText);
+        const data = response.data;
+        rDatos.innerHTML = '';
+        generarTabla(data);
+      } else if (xhr.status == 404) {
+        rDatos.className = 'error';
+        rDatos.innerHTML = 'Se ha producido un error'
+      } /* else {
+        userId.className = 'error';
+        rDatos.className = 'error';
+        rDatos.innerHTML = 'Lo sentimos, ha ocurrido un error'
+      } */
+    }
+
+    function generarTabla(datos) {
+      const tabla = document.createElement('table');
+
+      // Generamos cabecera
+      const cabeceras = Object.keys(datos[0]);
+      const cabeceraTabla = document.createElement('thead');
+      const filaCabecera = document.createElement('tr');
+      cabeceras.forEach(cabecera => {
+        const celdaCabecera = document.createElement('th');
+        celdaCabecera.textContent = cabecera;
+        filaCabecera.appendChild(celdaCabecera);
+      });
+      cabeceraTabla.appendChild(filaCabecera);
+      tabla.appendChild(cabeceraTabla);
+
+      // Generamos cuerpo
+      const cuerpoTabla = document.createElement('tbody');
+      datos.forEach(dato => {
+        const campos = Object.values(dato);
+        const filaCuerpo = document.createElement('tr');
+        campos.forEach(campo => {
+          const celdaCuerpo = document.createElement('td');
+          const re = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
+          if (String(campo).match('http')) {
+            if (String(campo).match(re)) {
+              const img = document.createElement('img');
+              img.setAttribute('src', campo);
+              celdaCuerpo.appendChild(img);
+            } else {
+              const anchor = document.createElement('a');
+              anchor.setAttribute('href', campo);
+              anchor.textContent = campo;
+              celdaCuerpo.appendChild(anchor);
+            }
+
+          } else {
+            celdaCuerpo.textContent = campo;
+          }
+          filaCuerpo.appendChild(celdaCuerpo);
+        });
+        cuerpoTabla.appendChild(filaCuerpo);
+      });
+      tabla.appendChild(cuerpoTabla);
+
+      rDatos.appendChild(tabla);
+    }
+  </script>
+</body>
+
+</html>

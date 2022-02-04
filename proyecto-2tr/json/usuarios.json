@@ -1,0 +1,20 @@
+{
+    "usuarios": [
+        {
+            "email": "admin",
+            "nombre": "admin",
+            "password": "admin",
+            "rol": "admin"
+        },
+        {
+            "email": "ana",
+            "nombre": "ana",
+            "password": "ana",
+            "rol": "user"
+        }
+    ],
+    "peticion": {
+        "tipo": "GET",
+        "datos": ""
+    }
+}

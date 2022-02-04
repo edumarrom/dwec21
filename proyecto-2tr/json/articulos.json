@@ -1,0 +1,56 @@
+{
+    "articulos": [
+        {
+            "id": 1,
+            "denominacion": "Purple Haze",
+            "descripcion": "Es una variedad 80% sativa, 20% indica. Crece hasta alcanzar una altura media, produciendo un aroma entre dulce y \u00e1cido que es inmediatamente reconocible. En los cogollos se detectan notas terrosas y a bayas. Como sugiere su nombre, las plantas presentan flores de color morado.",
+            "categoria": "Indica",
+            "pvp": 5.95,
+            "imagen": "https://en.seedfinder.eu/pics/01seeds/ACE_Seeds/ACE_Seeds_-_Purple_Haze_thumb.jpg"
+        },
+        {
+            "id": 2,
+            "denominacion": "AK-47",
+            "descripcion": "Variedad h\u00edbrida con dominancia sativa, un cruce cu\u00e1druple entre variedades colombianas, mexicanas, afganas y tailandesas.Es la planta m\u00e1s popular de Serious Seeds, una variedad f\u00e1cil de cultivar que no crece demasiado y que produce mucho en poco tiempo.",
+            "categoria": "Sativa",
+            "pvp": 8.95,
+            "imagen": "https://en.seedfinder.eu/pics/01seeds/Trikoma_Seeds/Trikoma_Seeds_-_AK_47_Auto_thumb.jpg"
+        },
+        {
+            "id": 3,
+            "denominacion": "Chocolope",
+            "descripcion": "Una variedad que merece un lugar en el jard\u00edn de todos los cultivadores, ya que ofrece abundantes cosechas con cualidades arom\u00e1ticas y gustativas excepcionales. El aroma y el sabor de Chocolope son intensos y ricos, con notas profundas a chocolate. Su efecto estimulante, en\u00e9rgico y euf\u00f3rico.",
+            "categoria": "Híbrida",
+            "pvp": 7.5,
+            "imagen": "https:\/\/www.alchimiaweb.com\/images\/s\/chocolope_1505_2_20190219165533_.jpg"
+        },
+        {
+            "id": 1,
+            "denominacion": "Purple Haze",
+            "descripcion": "Es una variedad 80% sativa, 20% indica. Crece hasta alcanzar una altura media, produciendo un aroma entre dulce y \u00e1cido que es inmediatamente reconocible. En los cogollos se detectan notas terrosas y a bayas. Como sugiere su nombre, las plantas presentan flores de color morado.",
+            "categoria": "Indica",
+            "pvp": 5.95,
+            "imagen": "https://en.seedfinder.eu/pics/01seeds/ACE_Seeds/ACE_Seeds_-_Purple_Haze_thumb.jpg"
+        },
+        {
+            "id": 2,
+            "denominacion": "AK-47",
+            "descripcion": "Variedad h\u00edbrida con dominancia sativa, un cruce cu\u00e1druple entre variedades colombianas, mexicanas, afganas y tailandesas.Es la planta m\u00e1s popular de Serious Seeds, una variedad f\u00e1cil de cultivar que no crece demasiado y que produce mucho en poco tiempo.",
+            "categoria": "Sativa",
+            "pvp": 8.95,
+            "imagen": "https://en.seedfinder.eu/pics/01seeds/Trikoma_Seeds/Trikoma_Seeds_-_AK_47_Auto_thumb.jpg"
+        },
+        {
+            "id": 3,
+            "denominacion": "Chocolope",
+            "descripcion": "Una variedad que merece un lugar en el jard\u00edn de todos los cultivadores, ya que ofrece abundantes cosechas con cualidades arom\u00e1ticas y gustativas excepcionales. El aroma y el sabor de Chocolope son intensos y ricos, con notas profundas a chocolate. Su efecto estimulante, en\u00e9rgico y euf\u00f3rico.",
+            "categoria": "Híbrida",
+            "pvp": 7.5,
+            "imagen": "https:\/\/www.alchimiaweb.com\/images\/s\/chocolope_1505_2_20190219165533_.jpg"
+        }
+    ],
+    "peticion": {
+        "tipo": "",
+        "datos": ""
+    }
+}
