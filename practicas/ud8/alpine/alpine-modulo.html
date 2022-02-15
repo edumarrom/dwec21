@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module">
+    import Alpine from './node_modules/alpinejs/dist/module.esm.js'
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+  <title>Alpine importado como módulo</title>
+</head>
+
+<body>
+  <h1 x-data="{ message: 'I ❤ Alpine' }" x-text="message">1</h1>
+
+  <div x-data="{
+      contador: 0,
+      saluda() {alert('hola')},
+      despedir: function() {alert('adios')}
+    }">
+    <button x-on:click="contador++">Incrementar</button>
+    <button @click="contador = 0">Reiniciar</button>
+    <span x-text="contador"></span>
+  </div>
+</body>
+
+</html>
