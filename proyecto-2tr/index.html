@@ -31,7 +31,7 @@
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0 text-2xl text-white">
-              Arte 1
+              Arte 1 - <span class="italic">Semillas de autor</span>
               <!-- <img class="h-8 w-8" src="#" alt=""> -->
             </div>
             <div class="hidden md:block">
@@ -69,10 +69,10 @@
 
               <button type="button" class=" ml-2 max-w-xs bg-gray-100 rounded-full flex items-center text-sm
                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                    id="user-menu-button">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                      id="user-menu-item-2">Administrar</a>
-                  </button>
+                id="user-menu-button">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                  id="user-menu-item-2">Administrar</a>
+              </button>
 
               <div class="ml-3 relative">
                 <div>
@@ -96,12 +96,53 @@
       </div>
     </header>
     <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 text-gray-600">
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Replace with your content -->
-        {  Filtrar por: Sativa Índica Híbrida  }
+        <div class="flex flex-row justify-between">
+          <div id="filtros" class="flex flex-row text-gray-600">
+            Filtrar por:
+            <a href="#" class="ml-2 rounded-full bg-amber-500 text-white px-3 py-1 rounded-md text-sm font-medium"
+              role="menuitem" id="user-menu-item-2">
+              Sativa
+            </a>
+
+            <a href="#" class="ml-2 rounded-full bg-violet-500 text-white px-3 py-1 rounded-md text-sm
+              font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-violet-800 focus:ring-white"
+              role="menuitem" id="user-menu-item-2">
+              Índica
+            </a>
+
+            <a href="#" class="ml-2 rounded-full bg-rose-500 text-white px-3 py-1 rounded-md text-sm font-medium"
+              role="menuitem" id="user-menu-item-2">
+              Híbrida
+            </a>
+          </div>
+
+          <div id="vistas" class="flex flex-row text-gray-600">
+            Mostrar:
+            <a href="#" class="ml-2 rounded-full bg-gray-500 text-white px-3 py-1 rounded-md text-sm
+              font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white"
+              role="menuitem" id="user-menu-item-2">
+              1
+            </a>
+
+            <a href="#" class="ml-2 rounded-full bg-gray-500 text-white px-3 py-1 rounded-md text-sm
+              font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white"
+              role="menuitem" id="user-menu-item-2">
+              5
+            </a>
+
+            <a href="#" class="ml-2 rounded-full bg-gray-500 text-white px-3 py-1 rounded-md text-sm
+              font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white"
+              role="menuitem" id="user-menu-item-2">
+              Todos
+            </a>
+          </div>
+        </div>
+
         <div class="px-4 py-6 sm:px-0">
           <div class="border border-gray-200 rounded-lg flex flex-row flex-wrap space-x-4"
-            id="elementos" >
+            id="elementos">
           </div>
         </div>
         <!-- /End replace -->
