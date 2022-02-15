@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peticiones asíncronas con jQuery</title>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+  <script>
+    $(document).ready(inicio);
+    function inicio() {
+      $('#ajax').click(function () {
+        const nom = $('#nombre').val();
+        const ape = $('#apellido').val();
+
+        const parametros = {
+          'nombre': nom,
+          'apellido': ape
+        };
+
+        $.ajax({
+          url: 'saludo.php',
+          data: parametros,
+          success: function (response) { // done
+            $('#mostrar').text(response);
+          },
+
+          error: function (xhr, status) { // fail
+            alert('Ha ocurrido un error, con código ' + xhr.status);
+          },
+          complete: function (xhr, status) { // always
+            alert('Peticion fializada (' + status + ')');
+          }
+          // Otras: beforeSend, aSync, cache, context, headers (ver API).
+        });
+      });
+
+      // Otros metodos basados en $.ajax, con parametros por defecto
+      $('#enviarGet').click(function () {
+        $.get('saludo.php', {
+          'nombre': 'Pepe',
+          'apellido': 'Villuela'
+        }, function (response) {
+          $('#mostrar').text(response)
+        });
+      });
+      $('#enviarGetMensajes').click(function () {
+        $.get('saludo.php', function () {
+          alert('exito');
+        }).done(function () {
+          alert('exito2');
+        }).fail(function () {
+          alert('Error');
+        }).always(function () {
+          alert('siempre');
+        });
+      });
+
+      $('#enviarPost').click(function () {
+        $.post('saludo.php', {
+          'nombre': 'Pepe',
+          'apellido': 'Villuela'
+        });
+
+        $.post('holamundo.php', function(response) {
+          alert('respuesta: ' + response);
+        });
+
+        $.post('saludo.php', {
+          'nombre': 'Pepe',
+          'apellido': 'Villuela'
+        }).done(function(response) {
+          alert('respiesta: ' + response)
+        });
+      });
+
+      $('#getScript').click(function() {
+        $.getScript('script.js', function() {
+          dentroScript();
+        });
+      });
+
+      $('#getJSON').click(function() {
+        $.getJSON('json.php', function(response) {
+          $.each(response, function(key, value) {
+            alert(key + ' : ' + value);
+          });
+        });
+      });
+
+      $('#load').click(function() {
+        $('#mostrar').load('holamundo.php', function() {
+          alert('Se ha cargado holamundo.php en #mostrar');
+        });
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+  <input type="text" name="nombre" id="nombre">
+  <input type="text" name="apellido" id="apellido">
+  <button id="ajax">Enviar Ajax</button>
+  <button id="enviarGet">Enviar Get</button>
+  <button id="enviarGetMensajes">Enviar Get</button>
+  <button id="enviarPost">Enviar Post</button>
+  <button id="getScript">getScript</button>
+  <button id="getJSON">getJSON</button>
+  <button id="load">Usar Load</button>
+  <br><br>
+  <p id="mostrar"></p>
+</body>
+
+</html>

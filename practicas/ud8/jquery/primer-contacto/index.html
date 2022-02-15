@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="jquery-3.6.0.js"></script>
+  <title>jQuery - Primer contacto</title>
+</head>
+
+<body>
+  <h1>jQuery - Primer contacto</h1>
+
+  <button id="hide">Mostrar / Ocultar</button>
+  <script>
+    $(function () {
+      $('#hide').dblclick(function() {
+        $('h1').toggle(300);
+      });
+    });
+  </script>
+</body>
+
+</html>
