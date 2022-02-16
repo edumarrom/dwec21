@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
   <script type="module">
     import Alpine from './node_modules/alpinejs/dist/module.esm.js'
     window.Alpine = Alpine;
@@ -16,6 +19,7 @@
 <body>
   <h1 x-data="{ message: 'I ❤ Alpine' }" x-text="message">1</h1>
 
+  <h2>Contador</h2>
   <div x-data="{
       contador: 0,
       saluda() {alert('hola')},
@@ -25,6 +29,123 @@
     <button @click="contador = 0">Reiniciar</button>
     <span x-text="contador"></span>
   </div>
+
+  <hr>
+
+  <h2>Desplegable</h2>
+  <div x-data="{open: false}">
+    <button @click="open = !open">Alternar</button>
+    <div x-show="open" @click.outside="open = false">Pare k paza?</div>
+  </div>
+
+  <hr>
+
+  <h2>Búsqueda</h2>
+  <div x-data=busqueda>
+    <input x-model="busqueda" placeholder="Buscar..."> <!-- Data binding -->
+    <ul>
+      <template x-for="item in filteredItems">
+        <li x-text="item"></li>
+      </template>
+    </ul>
+  </div>
+
+  <hr>
+  <h2>Datos reutilizables</h2>
+  <div x-data="desplegable">
+    <button @click="toggle">Expandir</button>
+    <span x-show="open">Papas con alcauciles</span>
+  </div>
+  <div x-data="desplegable">
+    <button @click="toggle">Expandir</button>
+    <span x-show="open">Crema de tapines</span>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Estados globales</h2>
+    <div x-data>
+      <template x-for="tab in $store.tabs.items">
+        <li x-text="tab"></li>
+      </template>
+    </div>
+    <div x-data>
+      <button @click=" $store.tabs.current='first'">First Tab</button>
+      <button @click=" $store.tabs.current='second'">Second Tab</button>
+      <button @click=" $store.tabs.current='third'">Third Tab</button>
+      <span x-text=" $store.tabs.current"></span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>x-if</h2>
+    <!-- x-if y x-for requieren de una etiqueta template -->
+    <div x-data="{ open: false }">
+      <button @click="open = ! open">Expandir</button>
+      <template x-if="open">
+        <div>
+          Garbanzos con choco
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Transiciones</h2>
+    <div x-data="{ open: false }">
+      <button @click="open = ! open">expandir</button>
+      <div x-show="open" x-transition:enter.duration.500ms x-transition:leave.duration.1000ms>
+        Bacalao a la marinera
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Binding de atributos</h2>
+    <button x-data="{ red: false }" x-bind:class="red ? 'bg-red' : ''" @click="red = ! red">
+      Alternar rojo
+    </button>
+  </div>
+
+  <footer>
+    <small>Eduardo Martínez Romero - 2ºDAW - Desarrollo Web en Entorno Cliente</small>
+  </footer>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('desplegable', () => ({
+        open: false,
+        toggle() {
+          this.open = !this.open
+        }
+      }))
+    });
+
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('tabs', {
+        current: 'first',
+        items: ['first', 'second', 'third'],
+      })
+    });
+
+    function busqueda() {
+      return {
+        busqueda: '',  // El criterio incial de búsqueda (enlñazado a x-model)
+        items: ['melocotón', 'kiwi', 'mango'],  // Elementos
+        get filteredItems() {
+          return this.items.filter(item => item.startsWith(this.busqueda))
+        }
+      }
+    };
+
+  </script>
 </body>
 
 </html>
