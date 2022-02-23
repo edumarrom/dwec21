@@ -6,7 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="style.css">
+
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+  <style>
+    .bg-red {
+      background-color: rgb(220 38 38);
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+  </style>
 
   <script type="module">
     import Alpine from './node_modules/alpinejs/dist/module.esm.js'
@@ -112,6 +124,29 @@
     <button x-data="{ red: false }" x-bind:class="red ? 'bg-red' : ''" @click="red = ! red">
       Alternar rojo
     </button>
+
+    <p x-bind:class="red ? 'bg-red' : ''">Pastel de calabaza</p>
+  </div>
+
+  <div x-data="{ open: true }">
+    <span :class="{ 'hidden': ! open }">Bizcocho de limón</span>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Objeto Evento</h2>
+    <button x-data @click="$event.target.remove()">Elimíname</button>
+    <!-- button.addEventListener('click', (event) => ) -->
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Eventos personalizados</h2>
+    <div x-data @evidente="console.log('El tiempo pasa')">
+      <button @click="$dispatch('evidente')">Dime algo evidente</button>
+    </div>
   </div>
 
   <footer>
