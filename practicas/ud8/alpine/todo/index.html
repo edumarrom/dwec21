@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do (componentes)</title>
+  <script src="./main.js" type="module"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> -->
+  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body   class="p-10 max-w-lg mx-auto">
+
+  <div  class="bg-gray-300 px-10 py-6 rounded"
+        x-data="TareaApp">
+
+    <form @submit.prevent="enviarTarea">
+      <input  x-model="nuevaTarea"
+              type="text"
+              placeholder="Ir al mercado..."
+              class="w-full px-1">
+    </form>
+
+    <ul class="list-disc mt-3">
+      <template x-for="(tarea, indice) in tareas" :key="indice">
+        <li>
+          <input type="checkbox" x-model="tarea.completada">
+          <span x-text="`${indice+1} - ${tarea.cuerpo}`"
+                :class="{ 'line-through': tarea.completada }"></span>
+        </li>
+      </template>
+    </ul>
+  </div>
+
+</body>
+</html>

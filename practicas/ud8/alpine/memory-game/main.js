@@ -23,20 +23,17 @@ document.addEventListener('alpine:init', () => {
       carta.girada = !carta.girada;
 
       if (this.cartasGiradas.length == 2) {
-        console.log('Has girado 2 cartas');
-        if (this.cartasGiradas[0].color == this.cartasGiradas[1].color) {
-
-          setTimeout(() => {
+        setTimeout(() => {
+          console.log('Has girado 2 cartas');
+          if (this.cartasGiradas[0].color == this.cartasGiradas[1].color) {
+            mensajePareja('Has encontrado una pareja');
             this.cartasGiradas.forEach(carta => carta.borrada = true);
             console.log('Y son iguales');
 
             if (this.puntos == this.cartas.length) {
-              alert('¡Has ganado!');
+              setTimeout(() => alert('¡Has ganado!'), 250);
             }
-          }, 750);
-        }
-
-        setTimeout(() => {
+          }
           this.cartasGiradas.forEach(carta => carta.girada = false);
         }, 750);
       }
